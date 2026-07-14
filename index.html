@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrayn — Progress that compounds.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root {
+  --green-dark:  #0a6b52;
+  --green-mid:   #1D9E75;
+  --green-light: #9FE1CB;
+  --green-bg:    #E1F5EE;
+  --text:        #1a1a18;
+  --text-sec:    #57564f;
+  --border:      #e0ddd8;
+  --bg:          #f5f5f4;
+  --white:       #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+/* ─── NAV ─── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(245,245,244,0.93); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:0 48px; height:68px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav-logo { display:flex; align-items:center; text-decoration:none; }
+
+/* Full lockup — icon + wordmark on top row, strapline spans both underneath */
+.logo-lockup-wrap { display:inline-flex; flex-direction:column; gap:4px; }
+.logo-lockup-top { display:flex; align-items:center; gap:11px; }
+.logo-lockup-strapline {
+  font-size:11.5px; letter-spacing:0.13em; line-height:1; font-weight:700;
+  width:100%;
+}
+
+.logo-icon {
+  width:36px; height:36px; background:var(--green-dark); border-radius:9px;
+  display:flex; align-items:flex-end; justify-content:center; gap:2px; padding:7px 6px 6px;
+  flex-shrink:0;
+}
+.logo-icon span { display:block; width:4px; border-radius:1px; }
+.logo-wordmark { font-size:27px; font-weight:700; letter-spacing:0.04em; line-height:1; }
+
+/* Footer larger icon */
+.logo-icon-lg {
+  width:44px; height:44px; background:var(--green-dark); border-radius:11px;
+  display:flex; align-items:flex-end; justify-content:center; gap:3px; padding:9px 7px 8px;
+  flex-shrink:0;
+}
+.logo-icon-lg span { display:block; width:5px; border-radius:1px; }
+.nav-links { display:flex; align-items:center; gap:34px; list-style:none; }
+.nav-links a { font-size:14px; color:var(--text-sec); text-decoration:none; transition:color .2s; }
+.nav-links a:hover { color:var(--text); }
+.nav-cta {
+  background:var(--green-dark); color:white !important; padding:9px 20px;
+  border-radius:6px; font-size:14px !important; font-weight:600 !important; transition:background .2s !important;
+}
+.nav-cta:hover { background:#063d31 !important; }
+
+/* ─── HERO ─── */
+#hero {
+  min-height:100vh; background:var(--green-dark);
+  display:flex; flex-direction:column; justify-content:center;
+  padding:120px 48px 100px; position:relative; overflow:hidden;
+}
+#hero::before {
+  content:''; position:absolute; top:-180px; right:-180px;
+  width:700px; height:700px;
+  background:radial-gradient(circle,rgba(61,184,138,.22) 0%,transparent 68%);
+  pointer-events:none;
+}
+#hero::after {
+  content:''; position:absolute; bottom:-100px; left:-100px;
+  width:400px; height:400px;
+  background:radial-gradient(circle,rgba(159,225,203,.09) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-inner {
+  max-width:1200px; margin:0 auto; width:100%;
+  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+}
+.hero-eyebrow {
+  font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--green-light); margin-bottom:22px;
+  display:flex; align-items:center; gap:8px;
+}
+.hero-eyebrow::before {
+  content:''; display:block; width:24px; height:1px; background:var(--green-light); opacity:.6;
+}
+.hero-headline {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(44px,5vw,70px); line-height:1.06;
+  color:white; letter-spacing:-.025em; margin-bottom:28px;
+}
+.hero-headline em { font-style:italic; color:var(--green-light); }
+.hero-sub {
+  font-size:18px; line-height:1.7; color:rgba(255,255,255,.62);
+  margin-bottom:48px; max-width:460px; font-weight:300;
+}
+.hero-form { display:flex; max-width:420px; }
+.hero-form input {
+  flex:1; padding:14px 18px;
+  border:1px solid rgba(255,255,255,.14); border-right:none;
+  border-radius:6px 0 0 6px; background:rgba(255,255,255,.07);
+  color:white; font-size:15px; font-family:'DM Sans',sans-serif;
+  outline:none; transition:border-color .2s;
+}
+.hero-form input::placeholder { color:rgba(255,255,255,.32); }
+.hero-form input:focus { border-color:var(--green-light); }
+.hero-form button {
+  padding:14px 22px; background:var(--green-mid); color:white; border:none;
+  border-radius:0 6px 6px 0; font-size:14px; font-weight:600;
+  font-family:'DM Sans',sans-serif; cursor:pointer; white-space:nowrap; transition:background .2s;
+}
+.hero-form button:hover { background:#179468; }
+.hero-note { margin-top:13px; font-size:13px; color:rgba(255,255,255,.3); }
+
+/* ─── CAROUSEL ─── */
+.hero-visual { display:flex; flex-direction:column; align-items:center; gap:24px; perspective:1200px; }
+.carousel-wrap { width:310px; }
+.carousel-track {
+  width:310px; height:671px; position:relative;
+  transform:rotateY(-10deg) rotateX(3deg);
+  border-radius:20px; overflow:hidden;
+  box-shadow:0 50px 90px rgba(0,0,0,.6),0 20px 40px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.06);
+  cursor:grab; user-select:none;
+}
+.carousel-track:active { cursor:grabbing; }
+.carousel-slide { width:310px; height:671px; background:var(--bg); display:none; flex-direction:column; animation:fadeSlide .38s ease; overflow:hidden; }
+.carousel-slide.active { display:flex; }
+@keyframes fadeSlide { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+.ss-header {
+  background:var(--bg); padding:14px 16px 10px;
+  display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); flex-shrink:0;
+}
+.ss-logo { width:24px; height:24px; background:var(--green-dark); border-radius:6px; display:flex; align-items:flex-end; justify-content:center; gap:2px; padding:4px 4px 3px; }
+.ss-logo span { display:block; width:3px; border-radius:1px; }
+.ss-title { font-size:12px; font-weight:600; color:var(--text); }
+.ss-sub { font-size:9px; color:var(--text-sec); }
+.ss-body { padding:11px; display:flex; flex-direction:column; gap:7px; flex:1; overflow:hidden; }
+.carousel-pills { display:flex; gap:8px; align-items:center; justify-content:center; }
+.carousel-pill { height:4px; border-radius:2px; background:rgba(255,255,255,.2); cursor:pointer; transition:all .3s; flex:1; max-width:48px; }
+.carousel-pill.active { background:var(--green-light); max-width:72px; }
+.carousel-pill:hover:not(.active) { background:rgba(255,255,255,.4); }
+
+/* shared mini UI */
+.mini-stat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; }
+.mini-stat { background:white; border-radius:8px; padding:9px 6px; text-align:center; border:1px solid var(--border); }
+.mini-stat-n { font-size:18px; font-weight:700; color:var(--text); line-height:1; }
+.mini-stat-l { font-size:8px; color:var(--text-sec); margin-top:2px; }
+.mini-label { font-size:8px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text-sec); }
+.mini-client { background:white; border-radius:9px; padding:9px 11px; border:1px solid var(--border); display:flex; align-items:center; gap:7px; }
+.mini-av { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; flex-shrink:0; }
+.mini-bar { height:3px; background:var(--border); border-radius:2px; margin-top:4px; overflow:hidden; }
+.mini-fill { height:100%; background:var(--green-mid); border-radius:2px; }
+.mini-insight { background:var(--green-bg); border-radius:10px; padding:12px; border:1.5px solid rgba(29,158,117,.28); }
+.mini-insight-lbl { font-size:8px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-mid); margin-bottom:7px; }
+.mini-insight-title { font-size:11px; font-weight:700; color:var(--text); margin-bottom:7px; line-height:1.35; }
+.mini-bullet { font-size:9px; color:var(--text-sec); display:flex; gap:5px; margin-bottom:4px; }
+.mini-bullet::before { content:'·'; color:var(--green-mid); font-weight:700; flex-shrink:0; }
+.mini-checkin { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; }
+.mini-ci { background:white; border-radius:7px; padding:8px 4px; text-align:center; border:1px solid var(--border); }
+.mini-ci-n { font-size:15px; font-weight:700; color:var(--green-mid); line-height:1; }
+.mini-ci-l { font-size:8px; color:var(--text-sec); margin-top:2px; }
+
+/* ─── SECTION BASE ─── */
+section { padding:112px 48px; }
+.container { max-width:1200px; margin:0 auto; }
+.eyebrow { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green-mid); margin-bottom:18px; }
+.section-headline { font-family:'DM Serif Display',serif; font-size:clamp(32px,3.5vw,50px); line-height:1.1; color:var(--text); letter-spacing:-.025em; margin-bottom:56px; }
+.section-headline em { font-style:italic; }
+
+/* ─── PROBLEM ─── */
+#problem { background:var(--white); padding:100px 48px; }
+.problem-inner { max-width:800px; margin:0 auto; }
+.problem-text {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(26px,3.2vw,42px); line-height:1.22; color:var(--text); letter-spacing:-.02em; margin-bottom:32px;
+}
+.problem-text em { font-style:italic; color:var(--text-sec); }
+.problem-detail { font-size:18px; color:var(--text-sec); line-height:1.75; font-weight:300; max-width:640px; }
+.problem-detail strong { color:var(--text); font-weight:500; }
+
+/* ─── FLYWHEEL ─── */
+#flywheel { background:var(--green-dark); padding:112px 48px; }
+.flywheel-inner { max-width:1100px; margin:0 auto; }
+.flywheel-eyebrow { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green-light); margin-bottom:18px; opacity:.7; }
+.flywheel-headline {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(32px,3.5vw,50px); line-height:1.1; color:white; letter-spacing:-.025em; margin-bottom:64px;
+}
+.flywheel-headline em { font-style:italic; color:var(--green-light); }
+.flywheel-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+.flywheel-grid::before {
+  content:''; position:absolute; top:36px; left:10%; right:10%; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(159,225,203,.25) 20%,rgba(159,225,203,.25) 80%,transparent);
+}
+.flywheel-step { padding:0 16px; position:relative; }
+.flywheel-num {
+  width:48px; height:48px; border-radius:50%;
+  background:rgba(29,158,117,.18); border:1px solid rgba(159,225,203,.25);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'DM Serif Display',serif; font-size:20px; color:var(--green-light);
+  margin-bottom:24px; position:relative; z-index:1;
+}
+.flywheel-step-title { font-size:16px; font-weight:600; color:white; margin-bottom:10px; letter-spacing:-.01em; }
+.flywheel-step-body { font-size:14px; color:rgba(255,255,255,.5); line-height:1.65; }
+.flywheel-moat {
+  margin-top:56px; padding:32px 40px;
+  background:rgba(29,158,117,.1); border:1px solid rgba(159,225,203,.15); border-radius:16px;
+  display:flex; align-items:center; gap:32px;
+}
+.flywheel-moat-icon { font-size:36px; flex-shrink:0; }
+.flywheel-moat-text { font-size:17px; color:rgba(255,255,255,.75); line-height:1.7; font-weight:300; }
+.flywheel-moat-text strong { color:white; font-weight:500; }
+
+/* ─── HOW IT WORKS ─── */
+#how { background:var(--bg); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; }
+.step-num { font-family:'DM Serif Display',serif; font-size:64px; line-height:1; color:var(--green-bg); margin-bottom:14px; letter-spacing:-.04em; }
+.step-title { font-size:17px; font-weight:600; color:var(--text); margin-bottom:9px; letter-spacing:-.01em; }
+.step-body { font-size:14px; color:var(--text-sec); line-height:1.65; }
+
+/* ─── FOR PTs ─── */
+#for-pts { background:var(--white); }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+.feature-list { display:flex; flex-direction:column; gap:32px; margin-top:8px; }
+.feature-item { border-left:2px solid var(--green-light); padding-left:20px; }
+.feature-title { font-size:16px; font-weight:600; color:var(--text); margin-bottom:6px; letter-spacing:-.01em; }
+.feature-body { font-size:14px; color:var(--text-sec); line-height:1.65; }
+.pt-callout {
+  margin-top:44px; background:var(--green-bg); border-radius:14px; padding:28px 32px;
+  border:1px solid rgba(29,158,117,.15);
+}
+.pt-callout-lbl { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--green-mid); margin-bottom:14px; }
+.pt-tiers { display:flex; gap:24px; }
+.pt-tier-name { font-size:11px; font-weight:600; color:var(--text-sec); text-transform:uppercase; letter-spacing:.06em; }
+.pt-tier-price { font-family:'DM Serif Display',serif; font-size:26px; color:var(--text); letter-spacing:-.02em; line-height:1.1; margin:4px 0; }
+.pt-tier-price span { font-size:13px; font-family:'DM Sans',sans-serif; font-weight:400; color:var(--text-sec); }
+.pt-tier-note { font-size:11px; color:var(--text-sec); }
+
+/* insights panel */
+.insights-panel { background:var(--bg); border-radius:16px; padding:20px; border:1px solid var(--border); box-shadow:0 8px 40px rgba(0,0,0,.06); position:sticky; top:88px; }
+.ins-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+.ins-title { font-size:14px; font-weight:600; color:var(--text); }
+.ins-sub { font-size:11px; color:var(--text-sec); margin-top:2px; }
+.ins-refresh { font-size:10px; color:var(--green-mid); cursor:pointer; }
+.ins-card { background:var(--green-bg); border-radius:10px; padding:14px; border:1px solid rgba(29,158,117,.2); margin-bottom:10px; }
+.ins-card-lbl { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-mid); margin-bottom:8px; display:flex; align-items:center; gap:5px; }
+.ins-card-title { font-size:13px; font-weight:700; color:var(--text); margin-bottom:8px; }
+.ins-bullets { list-style:none; display:flex; flex-direction:column; gap:5px; }
+.ins-bullets li { font-size:12px; color:var(--text-sec); padding-left:12px; position:relative; line-height:1.5; }
+.ins-bullets li::before { content:'·'; position:absolute; left:0; color:var(--green-mid); font-weight:700; }
+.ins-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin-bottom:10px; }
+.ins-ci { background:white; border-radius:8px; padding:11px 6px; text-align:center; border:1px solid var(--border); }
+.ins-ci-n { font-size:20px; font-weight:700; color:var(--green-mid); line-height:1; }
+.ins-ci-n span { font-size:12px; color:var(--text-sec); font-weight:400; }
+.ins-ci-l { font-size:10px; color:var(--text-sec); margin-top:3px; }
+.ins-vol { background:white; border-radius:9px; padding:13px 15px; border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.ins-vol-lbl { font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--text-sec); }
+.ins-vol-sub { font-size:11px; color:var(--text-sec); }
+.ins-vol-n { font-size:20px; font-weight:700; color:var(--text); letter-spacing:-.02em; }
+
+/* ─── FOR CLIENTS ─── */
+#for-clients { background:var(--bg); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.clients-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+.client-card { background:var(--white); border-radius:16px; padding:36px; border:1px solid var(--border); }
+.client-tag { display:inline-block; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--green-mid); background:var(--green-bg); padding:4px 10px; border-radius:4px; margin-bottom:18px; }
+.client-card-title { font-family:'DM Serif Display',serif; font-size:24px; line-height:1.25; color:var(--text); letter-spacing:-.02em; margin-bottom:14px; }
+.client-card-body { font-size:15px; color:var(--text-sec); line-height:1.7; }
+
+/* ─── FOR STUDIOS ─── */
+#for-studios { background:var(--white); }
+.studios-body { font-size:20px; color:var(--text-sec); line-height:1.75; margin-bottom:40px; font-weight:300; max-width:660px; }
+.studios-body strong { color:var(--text); font-weight:500; }
+.text-link { display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:var(--green-dark); text-decoration:none; border-bottom:1px solid var(--green-light); padding-bottom:2px; transition:all .2s; }
+.text-link:hover { color:var(--green-mid); border-color:var(--green-mid); }
+
+/* ─── PRICING ─── */
+#pricing { background:var(--bg); border-top:1px solid var(--border); }
+.pricing-tabs { display:flex; background:var(--border); border-radius:10px; padding:4px; width:fit-content; margin-bottom:48px; }
+.ptab { padding:9px 24px; border-radius:7px; font-size:14px; font-weight:500; color:var(--text-sec); cursor:pointer; border:none; background:transparent; font-family:'DM Sans',sans-serif; transition:all .2s; }
+.ptab.active { background:var(--white); color:var(--text); font-weight:600; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.pricing-panel { display:none; }
+.pricing-panel.active { display:block; }
+.billing-toggle { display:flex; align-items:center; gap:12px; margin-bottom:36px; }
+.btl { font-size:14px; color:var(--text-sec); cursor:pointer; }
+.btl.active { color:var(--text); font-weight:600; }
+.tswitch { width:44px; height:24px; background:var(--green-mid); border-radius:12px; position:relative; cursor:pointer; border:none; transition:background .2s; flex-shrink:0; }
+.tswitch::after { content:''; position:absolute; width:18px; height:18px; background:white; border-radius:50%; top:3px; left:3px; transition:transform .2s; }
+.tswitch.on::after { transform:translateX(20px); }
+.save-badge { font-size:11px; font-weight:600; background:var(--green-bg); color:var(--green-dark); padding:2px 8px; border-radius:20px; border:1px solid rgba(8,80,65,.15); }
+.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:28px; }
+.pc { background:var(--white); border-radius:16px; padding:32px 28px; border:1px solid var(--border); position:relative; transition:box-shadow .2s; display:flex; flex-direction:column; }
+.pc:hover { box-shadow:0 8px 32px rgba(0,0,0,.06); }
+.pc.featured { border-color:var(--green-mid); background:var(--green-dark); }
+.pc-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--green-mid); color:white; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:4px 12px; border-radius:20px; white-space:nowrap; }
+.pc-name { font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text-sec); margin-bottom:14px; }
+.pc.featured .pc-name { color:var(--green-light); }
+.pc-price { font-family:'DM Serif Display',serif; font-size:48px; line-height:1; letter-spacing:-.03em; color:var(--text); margin-bottom:2px; }
+.pc.featured .pc-price { color:white; }
+.pc-period { font-size:13px; color:var(--text-sec); margin-bottom:6px; }
+.pc.featured .pc-period { color:rgba(255,255,255,.5); }
+.pc-annual { font-size:12px; color:var(--green-mid); font-weight:500; min-height:18px; margin-bottom:22px; }
+.pc.featured .pc-annual { color:var(--green-light); }
+.pc-div { height:1px; background:var(--border); margin-bottom:18px; }
+.pc.featured .pc-div { background:rgba(255,255,255,.12); }
+.pc-features { list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:26px; flex:1; }
+.pc-features li { font-size:13px; color:var(--text-sec); display:flex; gap:9px; align-items:flex-start; line-height:1.5; }
+.pc.featured .pc-features li { color:rgba(255,255,255,.7); }
+.pc-features li::before { content:'✓'; color:var(--green-mid); font-weight:700; font-size:11px; flex-shrink:0; margin-top:2px; }
+.pc.featured .pc-features li::before { color:var(--green-light); }
+.pc-features li.off { color:var(--border); }
+.pc-features li.off::before { color:var(--border); }
+.pc.featured .pc-features li.off { color:rgba(255,255,255,.18); }
+.pc.featured .pc-features li.off::before { color:rgba(255,255,255,.18); }
+.pc-btn { display:block; width:100%; padding:12px; border-radius:8px; font-size:14px; font-weight:600; font-family:'DM Sans',sans-serif; cursor:pointer; text-align:center; margin-top:auto; transition:all .2s; background:var(--green-bg); color:var(--green-dark); border:1px solid rgba(29,158,117,.2); }
+.pc-btn:hover { background:#c8eee0; }
+.pc.featured .pc-btn { background:var(--green-mid); color:white; border-color:transparent; }
+.pc.featured .pc-btn:hover { background:#179468; }
+.pc-free-btn { background:transparent; color:var(--text-sec); border:1px solid var(--border); }
+.pc-free-btn:hover { border-color:var(--green-light); color:var(--text); }
+.pc-connected { border-color:var(--green-light); background:var(--green-bg); }
+.pricing-note { font-size:13px; color:var(--text-sec); text-align:center; margin-top:8px; }
+.pricing-launch { margin-top:28px; text-align:center; font-size:14px; color:var(--text-sec); padding:16px 24px; background:var(--white); border-radius:8px; border:1px solid var(--border); }
+.pricing-launch strong { color:var(--text); }
+
+/* ─── FOUNDER ─── */
+#founder { background:var(--white); border-top:1px solid var(--border); }
+.founder-grid { display:grid; grid-template-columns:1fr 2fr; gap:72px; align-items:start; max-width:940px; }
+.founder-photo { width:100%; aspect-ratio:3/4; background:var(--green-bg); border-radius:14px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; }
+.founder-photo span { font-size:13px; color:var(--text-sec); text-align:center; padding:0 16px; }
+.founder-eyebrow { font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--green-mid); margin-bottom:20px; }
+.founder-pull { font-family:'DM Serif Display',serif; font-size:clamp(20px,2.2vw,28px); line-height:1.35; color:var(--text); letter-spacing:-.02em; margin-bottom:26px; font-style:italic; }
+.founder-body { font-size:15px; color:var(--text-sec); line-height:1.8; margin-bottom:22px; font-weight:300; }
+.founder-sig { font-size:14px; color:var(--text); font-weight:600; }
+.founder-sig span { display:block; font-size:13px; color:var(--text-sec); font-weight:400; margin-top:3px; }
+
+/* ─── SOCIAL PROOF ─── */
+#social-proof { background:var(--bg); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.testimonial-wrap { max-width:640px; margin:0 auto; text-align:center; }
+.testimonial-box { background:var(--white); border-radius:16px; padding:48px; border:2px dashed var(--border); }
+.testimonial-placeholder { font-size:13px; color:var(--text-sec); margin-bottom:16px; }
+.testimonial-quote { font-family:'DM Serif Display',serif; font-size:clamp(20px,2.2vw,28px); line-height:1.45; color:var(--text); font-style:italic; margin-bottom:24px; }
+.testimonial-source { font-size:14px; font-weight:600; color:var(--text-sec); }
+
+/* ─── FAQ ─── */
+#faq { background:var(--white); }
+.faq-list { max-width:720px; }
+.faq-item { border-bottom:1px solid var(--border); padding:22px 0; }
+.faq-q { font-size:16px; font-weight:600; color:var(--text); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; user-select:none; letter-spacing:-.01em; }
+.faq-icon { flex-shrink:0; font-size:20px; font-weight:300; color:var(--green-mid); transition:transform .2s; }
+.faq-item.open .faq-icon { transform:rotate(45deg); }
+.faq-a { display:none; padding-top:13px; font-size:15px; color:var(--text-sec); line-height:1.7; }
+.faq-item.open .faq-a { display:block; }
+
+/* ─── FINAL CTA ─── */
+#final-cta { background:var(--green-dark); padding:120px 48px; text-align:center; }
+.cta-headline { font-family:'DM Serif Display',serif; font-size:clamp(34px,4.5vw,58px); line-height:1.1; color:white; letter-spacing:-.025em; margin-bottom:18px; }
+.cta-sub { font-size:18px; color:rgba(255,255,255,.55); margin-bottom:48px; font-weight:300; max-width:460px; margin-left:auto; margin-right:auto; }
+.final-form { display:flex; max-width:440px; margin:0 auto 14px; }
+.final-form input { flex:1; padding:15px 20px; border:1px solid rgba(255,255,255,.14); border-right:none; border-radius:6px 0 0 6px; background:rgba(255,255,255,.07); color:white; font-size:15px; font-family:'DM Sans',sans-serif; outline:none; }
+.final-form input::placeholder { color:rgba(255,255,255,.3); }
+.final-form button { padding:15px 26px; background:var(--green-mid); color:white; border:none; border-radius:0 6px 6px 0; font-size:14px; font-weight:600; font-family:'DM Sans',sans-serif; cursor:pointer; white-space:nowrap; }
+.final-note { font-size:13px; color:rgba(255,255,255,.28); }
+
+/* ─── FOOTER ─── */
+footer { background:#052e20; padding:44px 48px; display:flex; justify-content:space-between; align-items:center; }
+.footer-right { font-size:13px; color:rgba(255,255,255,.25); }
+.footer-wordmark { font-size:15px; font-weight:600; color:rgba(255,255,255,.45); }
+.footer-strapline { font-size:11px; color:rgba(255,255,255,.22); margin-top:3px; }
+
+/* logo bar colours helper */
+.b1 { background:#7ed9b4; }
+.b2 { background:#3db88a; }
+.b3 { background:#1d9068; }
+.b4 { background:#0d6647; }
+</style>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="logo-lockup-wrap">
+      <div class="logo-lockup-top">
+        <div class="logo-icon">
+          <span class="b1" style="height:5px"></span>
+          <span class="b2" style="height:9px"></span>
+          <span class="b3" style="height:13px"></span>
+          <span class="b4" style="height:17px"></span>
+        </div>
+        <span class="logo-wordmark" style="color:var(--text)">Entrayn</span>
+      </div>
+      <span class="logo-lockup-strapline" style="color:var(--green-mid)">Progress that compounds.</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#for-pts">For PTs</a></li>
+    <li><a href="#for-clients">For Clients</a></li>
+    <li><a href="#for-studios">For Studios</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#final-cta" class="nav-cta">Request early access</a></li>
+  </ul>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Now in early access</p>
+      <h1 class="hero-headline">Your PT, powered by <em>everything</em> the AI knows about you.</h1>
+      <p class="hero-sub">Entrayn is the first training platform where every session your client logs makes their next programme smarter. The AI handles programme design. You handle the coaching.</p>
+      <div class="hero-form">
+        <input type="email" placeholder="your@email.com">
+        <button>Request early access</button>
+      </div>
+      <p class="hero-note">No credit card required. Launching soon.</p>
+    </div>
+
+    <!-- CAROUSEL -->
+    <div class="hero-visual">
+      <div class="carousel-wrap">
+        <div class="carousel-track" id="carousel">
+
+          <!-- Slide 1: AI Insights -->
+          <div class="carousel-slide active">
+            <div class="ss-header">
+              <div class="ss-logo">
+                <span class="b1" style="height:3px"></span><span class="b2" style="height:5px"></span>
+                <span class="b3" style="height:8px"></span><span class="b4" style="height:11px"></span>
+              </div>
+              <div><div class="ss-title">James M. — Insights</div><div class="ss-sub">Strength · 3 days/wk</div></div>
+              <div style="margin-left:auto;font-size:9px;color:var(--green-mid);font-weight:500;">↻ Refresh</div>
+            </div>
+            <div class="ss-body">
+              <div class="mini-insight">
+                <div class="mini-insight-lbl">✦ AI Insight</div>
+                <div class="mini-insight-title">Low Adherence Despite Good Recovery Scores</div>
+                <div class="mini-bullet">Hit 1 of 3 sessions this week</div>
+                <div class="mini-bullet">Sleep & energy high — not a recovery issue</div>
+                <div class="mini-bullet">Check scheduling blockers this week</div>
+                <div class="mini-bullet">No PRs logged — consistency needed first</div>
+              </div>
+              <div class="mini-label" style="margin-top:2px;">Check-in Trends · 7 days</div>
+              <div class="mini-checkin">
+                <div class="mini-ci"><div class="mini-ci-n">4.0</div><div class="mini-ci-l">Soreness</div></div>
+                <div class="mini-ci"><div class="mini-ci-n">4.5</div><div class="mini-ci-l">Sleep</div></div>
+                <div class="mini-ci"><div class="mini-ci-n">4.5</div><div class="mini-ci-l">Energy</div></div>
+              </div>
+              <div style="background:white;border-radius:9px;padding:11px 13px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                <div><div class="mini-label">Volume this week</div><div style="font-size:8px;color:var(--text-sec);margin-top:1px;">No prior week to compare</div></div>
+                <div style="font-size:17px;font-weight:700;color:var(--text);letter-spacing:-.02em;">7,490 kg</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: PT Dashboard -->
+          <div class="carousel-slide">
+            <div class="ss-header">
+              <div class="ss-logo">
+                <span class="b1" style="height:3px"></span><span class="b2" style="height:5px"></span>
+                <span class="b3" style="height:8px"></span><span class="b4" style="height:11px"></span>
+              </div>
+              <div><div class="ss-title">Entrayn</div><div class="ss-sub">PT dashboard</div></div>
+            </div>
+            <div class="ss-body">
+              <div class="mini-stat-row">
+                <div class="mini-stat"><div class="mini-stat-n">6</div><div class="mini-stat-l">Clients</div></div>
+                <div class="mini-stat"><div class="mini-stat-n">6</div><div class="mini-stat-l">Active</div></div>
+                <div class="mini-stat"><div class="mini-stat-n" style="font-size:15px">84%</div><div class="mini-stat-l">Adherence</div></div>
+              </div>
+              <div class="mini-label">Client Roster</div>
+              <div class="mini-client">
+                <div class="mini-av" style="background:#085041">JM</div>
+                <div style="flex:1"><div style="font-size:10px;font-weight:600;color:var(--text)">James M. <span style="color:var(--green-mid);font-size:8px">● Active</span></div><div style="font-size:8px;color:var(--text-sec)">Strength · 3 days/wk · Wk 1 of 4</div><div class="mini-bar"><div class="mini-fill" style="width:33%"></div></div></div>
+              </div>
+              <div class="mini-client">
+                <div class="mini-av" style="background:#5b7fa6">SC</div>
+                <div style="flex:1"><div style="font-size:10px;font-weight:600;color:var(--text)">Sarah C. <span style="color:var(--green-mid);font-size:8px">● Active</span></div><div style="font-size:8px;color:var(--text-sec)">Weight loss · 4 days/wk · Wk 3 of 8</div><div class="mini-bar"><div class="mini-fill" style="width:67%"></div></div></div>
+              </div>
+              <div class="mini-client">
+                <div class="mini-av" style="background:#8a6b3f">TR</div>
+                <div style="flex:1"><div style="font-size:10px;font-weight:600;color:var(--text)">Tom R. <span style="color:var(--green-mid);font-size:8px">● Active</span></div><div style="font-size:8px;color:var(--text-sec)">Strength · 4 days/wk · Wk 2 of 6</div><div class="mini-bar"><div class="mini-fill" style="width:50%"></div></div></div>
+              </div>
+              <div class="mini-insight" style="margin-top:2px">
+                <div class="mini-insight-lbl">✦ AI Insight · James M.</div>
+                <div class="mini-insight-title" style="font-size:10px">Low adherence despite good recovery — check scheduling blockers</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Client Progress -->
+          <div class="carousel-slide">
+            <div class="ss-header">
+              <div class="ss-logo">
+                <span class="b1" style="height:3px"></span><span class="b2" style="height:5px"></span>
+                <span class="b3" style="height:8px"></span><span class="b4" style="height:11px"></span>
+              </div>
+              <div><div class="ss-title">Entrayn</div><div class="ss-sub">Progress</div></div>
+            </div>
+            <div class="ss-body">
+              <div style="background:var(--green-dark);border-radius:12px;padding:16px;">
+                <div class="mini-label" style="color:rgba(255,255,255,.4);margin-bottom:5px;">Your Block</div>
+                <div style="font-size:26px;font-weight:700;color:white;line-height:1;letter-spacing:-.02em;margin-bottom:4px;">Week 1 <span style="font-size:14px;font-weight:400;color:rgba(255,255,255,.45)">of 4</span></div>
+                <div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:12px;">Strength · 3 days / week</div>
+                <div style="height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;margin-bottom:8px;"><div style="width:8%;height:100%;background:var(--green-mid);border-radius:2px;"></div></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-size:9px;color:rgba(255,255,255,.35);">Block complete</div><div style="font-size:13px;font-weight:700;color:white;">8%</div></div>
+              </div>
+              <div style="background:white;border-radius:10px;padding:11px 13px;border:1px solid var(--border);text-align:center;cursor:pointer;"><div style="font-size:11px;font-weight:600;color:var(--green-dark);">Programme history →</div></div>
+              <div class="mini-label">Strength Progression</div>
+              <div style="background:white;border-radius:10px;padding:16px;border:1px solid var(--border);text-align:center;"><div style="font-size:20px;margin-bottom:6px;">📈</div><div style="font-size:10px;color:var(--text-sec);line-height:1.5;">Keep logging — your strength chart appears after week two.</div></div>
+              <div class="mini-label">Consistency</div>
+              <div style="background:white;border-radius:10px;padding:11px 13px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;"><div style="font-size:10px;font-weight:600;color:var(--text);">🔥 1 week streak</div><div style="font-size:9px;color:var(--green-mid);font-weight:500;">Keep going</div></div>
+            </div>
+          </div>
+
+          <!-- Slide 4: Session View -->
+          <div class="carousel-slide">
+            <div class="ss-header">
+              <div class="ss-logo">
+                <span class="b1" style="height:3px"></span><span class="b2" style="height:5px"></span>
+                <span class="b3" style="height:8px"></span><span class="b4" style="height:11px"></span>
+              </div>
+              <div><div class="ss-title">Good morning, James.</div><div class="ss-sub">Here is your programme.</div></div>
+            </div>
+            <div class="ss-body">
+              <div style="background:var(--green-bg);border-radius:8px;padding:9px 12px;border:1px solid rgba(29,158,117,.2);font-size:10px;font-weight:600;color:var(--green-dark);text-align:center;">Check-in done ✓ · tap to edit</div>
+              <div style="background:white;border-radius:10px;padding:10px 12px;border:1px solid var(--border);display:flex;align-items:center;gap:9px;"><div style="font-size:18px;">🔥</div><div><div style="font-size:10px;font-weight:600;color:var(--text);">1 week streak</div><div style="font-size:9px;color:var(--text-sec);">Nice — this week is in the bag.</div></div></div>
+              <div style="background:white;border-radius:10px;padding:12px;border:1px solid var(--border);">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px;">
+                  <div><div style="font-size:11px;font-weight:700;color:var(--text);">Day 1 — Full Body A</div><div style="font-size:9px;color:var(--text-sec);">Mon · Squat, horizontal push/pull</div></div>
+                  <div style="background:var(--green-bg);color:var(--green-dark);font-size:8px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap;">Done ✓</div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                  <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;font-size:8px;padding:2px 7px;color:var(--text-sec);">Barbell back squat</span>
+                  <span style="background:#e8e8f5;border-radius:20px;font-size:8px;padding:2px 7px;color:#4a4a7a;">BB bench + row</span>
+                  <span style="background:#e8e8f5;border-radius:20px;font-size:8px;padding:2px 7px;color:#4a4a7a;">Bulgarian split squat</span>
+                </div>
+              </div>
+              <div style="background:white;border-radius:10px;padding:12px;border:1px solid var(--border);">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px;">
+                  <div><div style="font-size:11px;font-weight:700;color:var(--text);">Day 2 — Full Body B</div><div style="font-size:9px;color:var(--text-sec);">Thu · Hinge, vertical push/pull</div></div>
+                  <div style="background:var(--bg);color:var(--text-sec);font-size:8px;font-weight:500;padding:2px 7px;border-radius:20px;border:1px solid var(--border);white-space:nowrap;">Not done</div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
+                  <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;font-size:8px;padding:2px 7px;color:var(--text-sec);">Deadlift</span>
+                  <span style="background:#e8e8f5;border-radius:20px;font-size:8px;padding:2px 7px;color:#4a4a7a;">OHP + Pull-up</span>
+                </div>
+                <div style="background:var(--green-dark);border-radius:7px;padding:9px;text-align:center;"><span style="font-size:10px;font-weight:600;color:white;">▶ Start session</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /carousel-track -->
+
+        <div class="carousel-pills" style="margin-top:22px;">
+          <div class="carousel-pill active" onclick="goTo(0)"></div>
+          <div class="carousel-pill" onclick="goTo(1)"></div>
+          <div class="carousel-pill" onclick="goTo(2)"></div>
+          <div class="carousel-pill" onclick="goTo(3)"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ PROBLEM ════════ -->
+<section id="problem">
+  <div class="container">
+    <div class="problem-inner">
+      <p class="problem-text">PTs spend hours building programmes manually — then coach blind because their software doesn't tell them what it knows. <em>Your client logged every session this week. Did your platform tell you anything useful?</em></p>
+      <p class="problem-detail">Entrayn closes the gap between what your client does and what you know as their trainer. <strong>Every session, every check-in, every metric — synthesised into a coaching brief before you even pick up your phone.</strong> So you spend less time building spreadsheets and more time doing what you got into this for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FLYWHEEL ════════ -->
+<section id="flywheel">
+  <div class="flywheel-inner">
+    <p class="flywheel-eyebrow">The data flywheel</p>
+    <h2 class="flywheel-headline">The platform that gets smarter <em>every session.</em></h2>
+    <div class="flywheel-grid">
+      <div class="flywheel-step">
+        <div class="flywheel-num">1</div>
+        <div class="flywheel-step-title">Client logs a session</div>
+        <p class="flywheel-step-body">Sets, reps, weights, check-in scores, energy, sleep, soreness — all captured in seconds after every session.</p>
+      </div>
+      <div class="flywheel-step">
+        <div class="flywheel-num">2</div>
+        <div class="flywheel-step-title">AI synthesises the data</div>
+        <p class="flywheel-step-body">Entrayn reads adherence trends, recovery patterns, volume load, and PR history to build a picture no spreadsheet ever could.</p>
+      </div>
+      <div class="flywheel-step">
+        <div class="flywheel-num">3</div>
+        <div class="flywheel-step-title">Programme gets smarter</div>
+        <p class="flywheel-step-body">Weight suggestions improve. Rest day guidance adapts. The next block is built from actual data, not assumptions.</p>
+      </div>
+      <div class="flywheel-step">
+        <div class="flywheel-num">4</div>
+        <div class="flywheel-step-title">PT coaches with context</div>
+        <p class="flywheel-step-body">Before every session the PT gets a plain-English briefing: what happened this week, what to focus on, what the data says.</p>
+      </div>
+    </div>
+    <div class="flywheel-moat">
+      <div class="flywheel-moat-icon">🔒</div>
+      <p class="flywheel-moat-text"><strong>Your training history is irreplaceable.</strong> Unlike any other PT platform, Entrayn gets more valuable the longer you use it. Every block your client completes is data that makes the next block smarter. That history lives here — and it compounds.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ HOW IT WORKS ════════ -->
+<section id="how">
+  <div class="container">
+    <p class="eyebrow">How it works</p>
+    <h2 class="section-headline">Up and running in minutes.</h2>
+    <div class="steps-grid">
+      <div>
+        <div class="step-num">01</div>
+        <div class="step-title">Add your clients</div>
+        <p class="step-body">Invite clients to the platform. They complete a quick onboarding — goals, available days, preferred time, any injuries or notes you need to know.</p>
+      </div>
+      <div>
+        <div class="step-num">02</div>
+        <div class="step-title">AI builds the programme</div>
+        <p class="step-body">Describe your client in plain English. The AI generates a complete, structured training block in seconds — tailored to their goal, equipment, and history.</p>
+      </div>
+      <div>
+        <div class="step-num">03</div>
+        <div class="step-title">Client logs everything</div>
+        <p class="step-body">Sessions, check-ins, energy, sleep, soreness — your client logs it all in the app. You see it the moment it happens.</p>
+      </div>
+      <div>
+        <div class="step-num">04</div>
+        <div class="step-title">Gets smarter over time</div>
+        <p class="step-body">Each block builds on the last. AI insights improve. Weight suggestions sharpen. The longer a client trains on Entrayn, the better their programme gets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOR PTs ════════ -->
+<section id="for-pts">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <p class="eyebrow">For personal trainers</p>
+        <h2 class="section-headline" style="margin-bottom:40px;">You used to spend two hours building a programme. <em>Now you spend twenty minutes reviewing one.</em></h2>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-title">AI programme generation</div>
+            <p class="feature-body">Describe your client in plain English and the AI generates a complete programme in seconds — structured blocks, progressive overload, tailored to their goal, experience, equipment, and any injuries.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-title">Pre-session coaching brief</div>
+            <p class="feature-body">Before every session, Entrayn gives you a plain-English briefing on each client: adherence this week, sleep and energy trends, PRs hit, what to focus on today. You walk in knowing everything.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-title">Client roster with live adherence</div>
+            <p class="feature-body">See every client at a glance. Who's on track, who needs a check-in, who hit a PR this week — without digging through messages or memory.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-title">Flat-rate. Unlimited clients.</div>
+            <p class="feature-body">One monthly fee. Add as many clients as you like. No per-seat fees, no growth penalty. The more clients you take on, the better value Entrayn gets.</p>
+          </div>
+        </div>
+        <div class="pt-callout">
+          <div class="pt-callout-lbl">PT Pricing — flat rate</div>
+          <div class="pt-tiers">
+            <div><div class="pt-tier-name">Base</div><div class="pt-tier-price">$49<span>/mo</span></div><div class="pt-tier-note">Up to 20 clients</div></div>
+            <div><div class="pt-tier-name">Pro</div><div class="pt-tier-price">$69<span>/mo</span></div><div class="pt-tier-note">Unlimited clients</div></div>
+            <div><div class="pt-tier-name">Studio</div><div class="pt-tier-price">$149<span>/mo</span></div><div class="pt-tier-note">Multiple trainers</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="insights-panel">
+          <div class="ins-header">
+            <div><div class="ins-title">James M. — Insights</div><div class="ins-sub">Strength · 3 days/wk</div></div>
+            <div class="ins-refresh">↻ Refresh</div>
+          </div>
+          <div class="ins-card">
+            <div class="ins-card-lbl">✦ AI Insight</div>
+            <div class="ins-card-title">Low Adherence Despite Good Recovery Scores</div>
+            <ul class="ins-bullets">
+              <li>James hit only 1 of 3 sessions this week</li>
+              <li>Sleep and energy scores high — recovery isn't the barrier</li>
+              <li>Check in on scheduling or motivation blockers this week</li>
+              <li>No PRs logged yet — consistency needed before progress shows</li>
+            </ul>
+          </div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-sec);margin-bottom:8px;">Check-in Trends · 7 days</div>
+          <div class="ins-row">
+            <div class="ins-ci"><div class="ins-ci-n">4.0<span>/5</span></div><div class="ins-ci-l">Soreness</div></div>
+            <div class="ins-ci"><div class="ins-ci-n">4.5<span>/5</span></div><div class="ins-ci-l">Sleep</div></div>
+            <div class="ins-ci"><div class="ins-ci-n">4.5<span>/5</span></div><div class="ins-ci-l">Energy</div></div>
+          </div>
+          <div class="ins-vol">
+            <div><div class="ins-vol-lbl">Volume this week</div><div class="ins-vol-sub">No prior week to compare</div></div>
+            <div class="ins-vol-n">7,490 kg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOR CLIENTS ════════ -->
+<section id="for-clients">
+  <div class="container">
+    <p class="eyebrow">For clients</p>
+    <h2 class="section-headline">Training that learns from you.</h2>
+    <div class="clients-grid">
+      <div class="client-card">
+        <div class="client-tag">Training with a PT</div>
+        <h3 class="client-card-title">Your programme, your progress — all in one place.</h3>
+        <p class="client-card-body">When your trainer uses Entrayn, you get the full client app included at no extra cost. See your sessions, log your sets, check in daily, and watch your progress compound. Your PT sees everything in real time.</p>
+      </div>
+      <div class="client-card">
+        <div class="client-tag">Training solo</div>
+        <h3 class="client-card-title">A programme that gets smarter every session.</h3>
+        <p class="client-card-body">No PT? Entrayn builds your programme from your goals and available days — then learns from your check-ins, session logs, and progress over time. The longer you train on Entrayn, the more accurate and personalised your plan becomes. No guesswork. No plateaus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOR STUDIOS ════════ -->
+<section id="for-studios">
+  <div class="container">
+    <div style="max-width:720px">
+      <p class="eyebrow">For gyms & studios</p>
+      <h2 class="section-headline" style="margin-bottom:32px;">One platform. Your whole team. Your brand.</h2>
+      <div style="width:40px;height:2px;background:var(--green-light);margin-bottom:36px;"></div>
+      <p class="studios-body"><strong>One Studio subscription covers every trainer in your team.</strong> Each PT gets their own dashboard and client roster. Your clients get a premium app experience. You get visibility across the whole studio — and optionally, your own branding on the platform. White-label ready.</p>
+      <a href="mailto:hello@entrayn.io" class="text-link">Talk to us about Studio access →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PRICING ════════ -->
+<section id="pricing">
+  <div class="container">
+    <p class="eyebrow">Pricing</p>
+    <h2 class="section-headline">Simple, flat-rate pricing.</h2>
+
+    <div class="pricing-tabs">
+      <button class="ptab active" onclick="switchTab('pt',this)">For Personal Trainers</button>
+      <button class="ptab" onclick="switchTab('client',this)">For Clients</button>
+    </div>
+
+    <!-- PT Panel -->
+    <div class="pricing-panel active" id="panel-pt">
+      <div class="billing-toggle">
+        <span class="btl active" id="lm-pt">Monthly</span>
+        <button class="tswitch" id="ts-pt" onclick="toggleBilling('pt')"></button>
+        <span class="btl" id="la-pt">Annual</span>
+        <span class="save-badge">Save 20%</span>
+      </div>
+      <div class="pricing-grid">
+        <div class="pc">
+          <div class="pc-name">Base</div>
+          <div class="pc-price" id="pp-base">$49</div>
+          <div class="pc-period">per month</div>
+          <div class="pc-annual" id="pa-base">&nbsp;</div>
+          <div class="pc-div"></div>
+          <ul class="pc-features">
+            <li>Up to 20 clients</li>
+            <li>AI programme builder</li>
+            <li>Client app included</li>
+            <li>Session logging & check-ins</li>
+            <li>Progress tracking</li>
+            <li class="off">AI insights per client</li>
+            <li class="off">Priority support</li>
+          </ul>
+          <button class="pc-btn">Join the waitlist</button>
+        </div>
+        <div class="pc featured">
+          <div class="pc-badge">Most popular</div>
+          <div class="pc-name">Pro</div>
+          <div class="pc-price" id="pp-pro">$69</div>
+          <div class="pc-period">per month</div>
+          <div class="pc-annual" id="pa-pro">&nbsp;</div>
+          <div class="pc-div"></div>
+          <ul class="pc-features">
+            <li>Unlimited clients</li>
+            <li>AI programme builder</li>
+            <li>Client app included</li>
+            <li>Session logging & check-ins</li>
+            <li>Progress tracking</li>
+            <li>AI insights per client</li>
+            <li>Priority support</li>
+          </ul>
+          <button class="pc-btn">Join the waitlist</button>
+        </div>
+        <div class="pc">
+          <div class="pc-name">Studio</div>
+          <div class="pc-price" id="pp-stu">$149</div>
+          <div class="pc-period">per month</div>
+          <div class="pc-annual" id="pa-stu">&nbsp;</div>
+          <div class="pc-div"></div>
+          <ul class="pc-features">
+            <li>Multiple trainers</li>
+            <li>Unlimited clients</li>
+            <li>AI programme builder</li>
+            <li>Client app included</li>
+            <li>Studio-level dashboard</li>
+            <li>AI insights per client</li>
+            <li>White-label ready</li>
+          </ul>
+          <button class="pc-btn">Join the waitlist</button>
+        </div>
+      </div>
+      <p class="pricing-note">All PT plans include the client app at no cost to your clients. No per-seat fees. No surprises.</p>
+      <div class="pricing-launch"><strong>Launching soon.</strong> Join the waitlist to lock in early access pricing before we go public.</div>
+    </div>
+
+    <!-- Client Panel -->
+    <div class="pricing-panel" id="panel-client">
+      <div class="billing-toggle">
+        <span class="btl active" id="lm-cl">Monthly</span>
+        <button class="tswitch" id="ts-cl" onclick="toggleBilling('client')"></button>
+        <span class="btl" id="la-cl">Annual</span>
+        <span class="save-badge">Save 20%</span>
+      </div>
+      <div class="pricing-grid">
+        <div class="pc">
+          <div class="pc-name">Free</div>
+          <div class="pc-price">$0</div>
+          <div class="pc-period">forever</div>
+          <div class="pc-annual">&nbsp;</div>
+          <div class="pc-div"></div>
+          <ul class="pc-features">
+            <li>Personalised training programme</li>
+            <li>Session logging</li>
+            <li>Basic progress tracking</li>
+            <li class="off">Daily check-ins & wellbeing</li>
+            <li class="off">AI-generated insights</li>
+            <li class="off">Health data integration</li>
+          </ul>
+          <button class="pc-btn pc-free-btn">Get started free</button>
+        </div>
+        <div class="pc featured">
+          <div class="pc-badge">Full experience</div>
+          <div class="pc-name">Premium</div>
+          <div class="pc-price" id="pp-prem">$9.99</div>
+          <div class="pc-period">per month</div>
+          <div class="pc-annual" id="pa-prem">&nbsp;</div>
+          <div class="pc-div"></div>
+          <ul class="pc-features">
+            <li>Personalised training programme</li>
+            <li>Session logging</li>
+            <li>Full progress tracking</li>
+            <li>Daily check-ins & wellbeing</li>
+            <li>AI-generated insights</li>
+            <li>Health data integration</li>
+          </ul>
+          <button class="pc-btn">Join the waitlist</button>
+        </div>
+        <div class="pc pc-connected">
+          <div class="pc-name" style="color:var(--green-dark)">Connected to a PT</div>
+          <div class="pc-price" style="color:var(--green-dark)">Free</div>
+          <div class="pc-period">included with your trainer</div>
+          <div class="pc-annual" style="color:var(--green-mid)">Premium features, no cost to you</div>
+          <div class="pc-div" style="background:rgba(8,80,65,.12)"></div>
+          <ul class="pc-features">
+            <li style="color:var(--text)">Your trainer's programme, live</li>
+            <li style="color:var(--text)">Session logging</li>
+            <li style="color:var(--text)">Full progress tracking</li>
+            <li style="color:var(--text)">Daily check-ins & wellbeing</li>
+            <li style="color:var(--text)">AI insights (shared with PT)</li>
+            <li style="color:var(--text)">Health data integration</li>
+          </ul>
+          <div style="padding-top:8px;font-size:13px;color:var(--green-dark);font-weight:500;text-align:center;margin-top:auto;">Ask your trainer about Entrayn</div>
+        </div>
+      </div>
+      <p class="pricing-note">Clients connected to any PT on Entrayn get full premium access — no payment required.</p>
+      <div class="pricing-launch"><strong>Launching soon.</strong> Join the waitlist to be first when we open.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOUNDER ════════ -->
+<section id="founder">
+  <div class="container">
+    <div class="founder-grid">
+      <div class="founder-photo">
+        <div style="font-size:40px;opacity:.25">📷</div>
+        <span>Photo of Mark goes here</span>
+      </div>
+      <div>
+        <p class="founder-eyebrow">Why Entrayn exists</p>
+        <p class="founder-pull">"Built by someone who has been the client — through injury, through rehab, through the gap between what a good PT knows and what their software shows them."</p>
+        <p class="founder-body">I was training for a 50km-a-day charity challenge — 50 consecutive days, raising $50,000 for the Mirabel Foundation supporting vulnerable children. Running 17 hours a week, I dropped strength training to manage the load. I thought I was being efficient. I was wrong. A pinched lateral plantar nerve put me off running for eight months. Saline hydrodissection. Six months of rehab.</p>
+        <p class="founder-body">The whole time, I was logging in a Google Sheet. My PT had no real visibility. And the gap between what a skilled trainer knows about their client and what their software actually surfaces to them was the most obvious problem I'd ever seen go unsolved.</p>
+        <p class="founder-body">Entrayn is the tool I wished existed. Not a scheduling app. Not another workout logger. The intelligence layer that closes the gap — so PTs can coach with context, and clients can train with a plan that actually learns from them.</p>
+        <div class="founder-sig">Mark Carpenter<span>Founder, Entrayn — Melbourne, Australia</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SOCIAL PROOF ════════ -->
+<section id="social-proof">
+  <div class="container">
+    <div class="testimonial-wrap">
+      <div class="testimonial-box">
+        <p class="testimonial-placeholder">First testimonial — coming at launch</p>
+        <p class="testimonial-quote">"[Caio Barbosa's words go here — Stark Strength Studio, Melbourne]"</p>
+        <div class="testimonial-source">Caio Barbosa · Stark Strength Studio, Melbourne</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FAQ ════════ -->
+<section id="faq">
+  <div class="container">
+    <p class="eyebrow">Common questions</p>
+    <h2 class="section-headline">FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)">Does Entrayn replace my job as a PT?<span class="faq-icon">+</span></div>
+        <div class="faq-a">No — and that's the whole point. PTs got into this because they love coaching people, not building spreadsheets. Entrayn handles programme design and data synthesis so you can spend your time on what actually matters: the relationship, the accountability, the coaching moments. The AI is the engine. You're the expert and the human. Together you deliver better outcomes than either could alone.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)">Is Entrayn free for my clients?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes. Clients connected to a PT on Entrayn get the full premium client app at no cost to them — it's included in your PT subscription. Solo clients can use a free tier, or upgrade to premium for $9.99/month.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)">What happens when I join the waitlist?<span class="faq-icon">+</span></div>
+        <div class="faq-a">You'll receive a confirmation and be among the first to access Entrayn when we launch. Early access members are offered a locked-in price before we move to standard pricing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)">How does the AI programme builder work?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Describe your client in plain English — their goal, training age, available days, equipment, any injuries — and Entrayn generates a complete, structured training block in seconds. You review it, adjust anything you like, and publish it to the client. As the client logs sessions and check-ins, the AI refines weight suggestions, rest day guidance, and coaching insights block by block.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)">What makes Entrayn different from Everfit or TrueCoach?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Most PT platforms charge per client, so the more you grow the more you pay. Entrayn is flat-rate — unlimited clients, one price. But the deeper difference is the data flywheel: Entrayn gets more valuable the longer a client trains on it. Their accumulated session history, check-in data, and progress trends make every subsequent programme smarter. No other platform does this.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)">Is my data secure?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes. Entrayn is built on Supabase with row-level security — each trainer and client only ever sees their own data. Your client data is never used to train third-party AI models.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)">When does Entrayn launch?<span class="faq-icon">+</span></div>
+        <div class="faq-a">We're in closed beta now with our first PT partner in Melbourne. Full launch is coming soon. Join the waitlist to be notified the day we open and to lock in early access pricing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FINAL CTA ════════ -->
+<section id="final-cta">
+  <h2 class="cta-headline">Ready to run a smarter practice?</h2>
+  <p class="cta-sub">Join the waitlist and be first to access Entrayn when we launch.</p>
+  <div class="final-form">
+    <input type="email" placeholder="your@email.com">
+    <button>Join waitlist</button>
+  </div>
+  <p class="final-note">No credit card required. Unsubscribe any time.</p>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="logo-lockup-wrap">
+    <div class="logo-lockup-top">
+      <div class="logo-icon-lg">
+        <span class="b1" style="height:7px"></span>
+        <span class="b2" style="height:12px"></span>
+        <span class="b3" style="height:17px"></span>
+        <span class="b4" style="height:22px"></span>
+      </div>
+      <span class="logo-wordmark" style="color:rgba(255,255,255,.5);font-size:24px;letter-spacing:0.04em;">Entrayn</span>
+    </div>
+    <span class="logo-lockup-strapline" style="color:rgba(255,255,255,.35);font-size:13px;font-weight:700;">Progress that compounds.</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
+    <div class="footer-right">© 2026 Entrayn Pty Ltd. All rights reserved.</div>
+    <div style="display:flex;gap:20px;">
+      <a href="/privacy" style="font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;">Privacy Policy</a>
+      <a href="/terms" style="font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;">Terms of Service</a>
+      <a href="/cookies" style="font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── CAROUSEL ──
+let cur = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const pills  = document.querySelectorAll('.carousel-pill');
+let timer = null, dragging = false, dragX = 0;
+
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  pills[cur].classList.remove('active');
+  cur = (n + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  pills[cur].classList.add('active');
+}
+function next() { goTo(cur + 1); }
+function startAuto() { stopAuto(); timer = setInterval(next, 4200); }
+function stopAuto()  { clearInterval(timer); timer = null; }
+
+const track = document.getElementById('carousel');
+track.addEventListener('mousedown',  e => { dragging=true; dragX=e.clientX; stopAuto(); });
+track.addEventListener('touchstart', e => { dragging=true; dragX=e.touches[0].clientX; stopAuto(); }, {passive:true});
+window.addEventListener('mouseup',   e => { if(!dragging)return; dragging=false; if(Math.abs(e.clientX-dragX)>40) e.clientX<dragX?next():goTo(cur-1); startAuto(); });
+window.addEventListener('touchend',  e => { if(!dragging)return; dragging=false; const d=e.changedTouches[0].clientX-dragX; if(Math.abs(d)>40) d<0?next():goTo(cur-1); startAuto(); });
+track.addEventListener('mouseenter', stopAuto);
+track.addEventListener('mouseleave', startAuto);
+startAuto();
+
+// ── PRICING TABS ──
+function switchTab(tab, btn) {
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.pricing-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+}
+
+// ── BILLING TOGGLE ──
+let ptOn=false, clOn=false;
+const ptP  = {mo:{base:'$49',pro:'$69',stu:'$149'}, yr:{base:'$39',pro:'$55',stu:'$119'}};
+const clP  = {mo:{prem:'$9.99'}, yr:{prem:'$7.99'}};
+
+function toggleBilling(a) {
+  if(a==='pt') {
+    ptOn=!ptOn;
+    document.getElementById('ts-pt').classList.toggle('on',ptOn);
+    document.getElementById('lm-pt').classList.toggle('active',!ptOn);
+    document.getElementById('la-pt').classList.toggle('active',ptOn);
+    const p = ptOn?ptP.yr:ptP.mo;
+    document.getElementById('pp-base').textContent=p.base;
+    document.getElementById('pp-pro').textContent=p.pro;
+    document.getElementById('pp-stu').textContent=p.stu;
+    const n = ptOn?'billed annually':'\u00a0';
+    ['pa-base','pa-pro','pa-stu'].forEach(id=>document.getElementById(id).textContent=n);
+  } else {
+    clOn=!clOn;
+    document.getElementById('ts-cl').classList.toggle('on',clOn);
+    document.getElementById('lm-cl').classList.toggle('active',!clOn);
+    document.getElementById('la-cl').classList.toggle('active',clOn);
+    document.getElementById('pp-prem').textContent=clOn?clP.yr.prem:clP.mo.prem;
+    document.getElementById('pa-prem').textContent=clOn?'billed annually — save $24/yr':'\u00a0';
+  }
+}
+
+// ── FAQ ──
+function faq(el) {
+  const item=el.closest('.faq-item'), open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!open) item.classList.add('open');
+}
+
+// ── NAV SHADOW ──
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.boxShadow = window.scrollY>10 ? '0 1px 20px rgba(0,0,0,.06)' : 'none';
+});
+</script>
+</body>
+</html>
