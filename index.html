@@ -29,21 +29,56 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text)
 /* ─── NAV ─── */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:100;
-  background:rgba(245,245,244,0.93); backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
+  background:transparent;
+  border-bottom:1px solid transparent;
+  box-shadow:none;
   padding:0 48px; height:68px;
   display:flex; align-items:center; justify-content:space-between;
+  transition:all 0.3s ease;
 }
+nav.nav-scrolled {
+  background:rgba(245,245,244,0.95);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid #e0ddd8;
+  box-shadow:0 1px 20px rgba(0,0,0,0.06);
+}
+/* ── Logo SVG colour states ── */
+.nav-logo-bar       { fill:#9FE1CB; transition:fill 0.3s ease; }
+.nav-scrolled .nav-logo-bar   { fill:#085041; }
+.nav-logo-wordmark  { fill:#ffffff; transition:fill 0.3s ease; }
+.nav-scrolled .nav-logo-wordmark { fill:#085041; }
 .nav-logo { display:flex; align-items:center; text-decoration:none; }
 
+/* ── Nav links ── */
 .nav-links { display:flex; align-items:center; gap:34px; list-style:none; }
-.nav-links a { font-size:14px; color:var(--text-sec); text-decoration:none; transition:color .2s; }
-.nav-links a:hover { color:var(--text); }
-.nav-cta {
-  background:var(--green-dark); color:white !important; padding:9px 20px;
-  border-radius:6px; font-size:14px !important; font-weight:600 !important; transition:background .2s !important;
+.nav-links a {
+  font-size:14px; text-decoration:none; transition:color 0.2s;
+  color:#ffffff;
 }
-.nav-cta:hover { background:#063d31 !important; }
+.nav-links a:hover { color:rgba(255,255,255,0.7); }
+nav.nav-scrolled .nav-links a { color:#57564f; }
+nav.nav-scrolled .nav-links a:hover { color:#1a1a18; }
+
+/* ── Sign in ── */
+.nav-signin {
+  font-size:14px; font-weight:500; text-decoration:none;
+  color:rgba(255,255,255,0.8) !important;
+  transition:color 0.2s;
+}
+nav.nav-scrolled .nav-signin { color:#57564f !important; }
+
+/* ── Sign up CTA ── */
+.nav-cta {
+  padding:9px 20px; border-radius:6px;
+  font-size:14px !important; font-weight:600 !important;
+  color:white !important; text-decoration:none;
+  background:#1D9E75;
+  transition:background 0.2s !important;
+}
+.nav-cta:hover { background:#179468 !important; }
+nav.nav-scrolled .nav-cta { background:#085041 !important; }
+nav.nav-scrolled .nav-cta:hover { background:#063d31 !important; }
 
 /* ─── HERO ─── */
 #hero {
@@ -179,10 +214,6 @@ section { padding:112px 48px; }
 }
 .flywheel-headline em { font-style:italic; color:var(--green-light); }
 .flywheel-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
-.flywheel-grid::before {
-  content:''; position:absolute; top:36px; left:10%; right:10%; height:1px;
-  background:linear-gradient(90deg,transparent,rgba(159,225,203,.25) 20%,rgba(159,225,203,.25) 80%,transparent);
-}
 .flywheel-step { padding:0 16px; position:relative; }
 .flywheel-num {
   width:48px; height:48px; border-radius:50%;
@@ -353,23 +384,21 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 
 <!-- ════════ NAV ════════ -->
 <nav>
-  <a href="#hero" class="nav-logo">
-    <svg width="220" height="44" viewBox="0 0 220 44" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="16" width="6" height="12" rx="2" fill="#9FE1CB" opacity="0.4"/>
-      <rect x="9" y="10" width="6" height="18" rx="2" fill="#9FE1CB" opacity="0.7"/>
-      <rect x="18" y="4" width="6" height="24" rx="2" fill="#9FE1CB"/>
-      <text x="32" y="23" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.04em">ENTRAYN</text>
-      <text x="32" y="38" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="8" font-weight="500" fill="#9FE1CB" opacity="0.5" letter-spacing="0.1em">PROGRESS THAT </text>
-      <text x="148" y="38" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="8" font-weight="500" fill="#9FE1CB" letter-spacing="0.1em">COMPOUNDS</text>
+  <a href="#hero" class="nav-logo" style="line-height:0;">
+    <svg id="nav-logo-img" width="210" height="44" viewBox="0 0 220 30" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+      <rect class="nav-logo-bar" x="0"  y="18" width="6" height="8"  rx="2" opacity="0.4"/>
+      <rect class="nav-logo-bar" x="9"  y="10" width="6" height="16" rx="2" opacity="0.7"/>
+      <rect class="nav-logo-bar" x="18" y="0"  width="6" height="26" rx="2"/>
+      <text class="nav-logo-wordmark" x="32" y="20" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="20" font-weight="700" letter-spacing="0.04em">ENTRAYN</text>
     </svg>
   </a>
   <ul class="nav-links">
-    <li><a href="#for-pts">For PTs</a></li>
+    <li><a href="#for-pts">For Coaches</a></li>
     <li><a href="#for-clients">For Clients</a></li>
     <li><a href="#for-studios">For Studios</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="https://entrayn.app/login" style="font-size:14px;color:var(--text-sec);text-decoration:none;font-weight:500;">Sign in</a></li>
-    <li><a href="https://entrayn.app/signup" class="nav-cta" style="background:#085041;">Sign up</a></li>
+    <li><a href="https://entrayn.app/login" class="nav-signin">Sign in</a></li>
+    <li><a href="https://entrayn.app/signup" class="nav-cta">Sign up</a></li>
   </ul>
 </nav>
 
@@ -377,7 +406,10 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 <section id="hero">
   <div class="hero-inner">
     <div>
-      <h1 class="hero-headline">Stop building programmes. Every session logged makes the next one <em>smarter.</em></h1>
+      <h1 class="hero-headline">
+        <span style="display:block;font-size:clamp(64px,8vw,96px);font-weight:700;color:#ffffff;line-height:1.0;letter-spacing:-0.03em;margin-bottom:20px;">Stop building programmes.</span>
+        <span style="display:block;font-size:clamp(28px,3.5vw,42px);font-weight:400;color:rgba(255,255,255,0.75);line-height:1.2;letter-spacing:-0.01em;">Every session logged makes the next one <em>smarter.</em></span>
+      </h1>
       <p class="hero-sub">Entrayn Intelligence is your co-pilot. You focus on the coaching. It takes care of the rest.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
         <a href="https://entrayn.app/signup?role=pt" style="display:inline-block;padding:14px 28px;background:var(--green-mid);color:white;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;border-radius:6px;text-decoration:none;">Sign up as a coach →</a>
@@ -968,10 +1000,14 @@ function faq(el) {
   if(!open) item.classList.add('open');
 }
 
-// ── NAV SHADOW ──
-window.addEventListener('scroll',()=>{
-  document.querySelector('nav').style.boxShadow = window.scrollY>10 ? '0 1px 20px rgba(0,0,0,.06)' : 'none';
-});
+// ── NAV SCROLL STATE ──
+const navEl     = document.querySelector('nav');
+const THRESHOLD = 80;
+function updateNav() {
+  navEl.classList.toggle('nav-scrolled', window.scrollY > THRESHOLD);
+}
+window.addEventListener('scroll', updateNav, {passive:true});
+updateNav();
 </script>
 </body>
 </html>
