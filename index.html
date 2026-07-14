@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Entrayn — Progress that compounds.</title>
 <script src="https://app.termly.io/resource-blocker/a99b93a9-1b7b-4818-bd18-06ebfd9cb36d?autoBlock=on"></script>
+<link rel="icon" href="entrayn-icon-only.svg" type="image/svg+xml">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
 
@@ -35,29 +36,6 @@ nav {
 }
 .nav-logo { display:flex; align-items:center; text-decoration:none; }
 
-/* Full lockup — icon + wordmark on top row, strapline spans both underneath */
-.logo-lockup-wrap { display:inline-flex; flex-direction:column; gap:4px; }
-.logo-lockup-top { display:flex; align-items:center; gap:11px; }
-.logo-lockup-strapline {
-  font-size:11.5px; letter-spacing:0.13em; line-height:1; font-weight:700;
-  width:100%;
-}
-
-.logo-icon {
-  width:36px; height:36px; background:var(--green-dark); border-radius:9px;
-  display:flex; align-items:flex-end; justify-content:center; gap:2px; padding:7px 6px 6px;
-  flex-shrink:0;
-}
-.logo-icon span { display:block; width:4px; border-radius:1px; }
-.logo-wordmark { font-size:27px; font-weight:700; letter-spacing:0.04em; line-height:1; }
-
-/* Footer larger icon */
-.logo-icon-lg {
-  width:44px; height:44px; background:var(--green-dark); border-radius:11px;
-  display:flex; align-items:flex-end; justify-content:center; gap:3px; padding:9px 7px 8px;
-  flex-shrink:0;
-}
-.logo-icon-lg span { display:block; width:5px; border-radius:1px; }
 .nav-links { display:flex; align-items:center; gap:34px; list-style:none; }
 .nav-links a { font-size:14px; color:var(--text-sec); text-decoration:none; transition:color .2s; }
 .nav-links a:hover { color:var(--text); }
@@ -369,11 +347,6 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 .footer-wordmark { font-size:15px; font-weight:600; color:rgba(255,255,255,.45); }
 .footer-strapline { font-size:11px; color:rgba(255,255,255,.22); margin-top:3px; }
 
-/* logo bar colours helper */
-.b1 { background:#7ed9b4; }
-.b2 { background:#3db88a; }
-.b3 { background:#1d9068; }
-.b4 { background:#0d6647; }
 </style>
 </head>
 <body>
@@ -381,25 +354,22 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 <!-- ════════ NAV ════════ -->
 <nav>
   <a href="#hero" class="nav-logo">
-    <div class="logo-lockup-wrap">
-      <div class="logo-lockup-top">
-        <div class="logo-icon">
-          <span class="b1" style="height:6px"></span>
-          <span class="b2" style="height:11px"></span>
-          <span class="b3" style="height:17px"></span>
-        </div>
-        <span class="logo-wordmark" style="color:var(--text)">Entrayn</span>
-      </div>
-      <span class="logo-lockup-strapline" style="color:var(--green-mid)">Progress that compounds.</span>
-    </div>
+    <svg width="220" height="44" viewBox="0 0 220 44" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="16" width="6" height="12" rx="2" fill="#9FE1CB" opacity="0.4"/>
+      <rect x="9" y="10" width="6" height="18" rx="2" fill="#9FE1CB" opacity="0.7"/>
+      <rect x="18" y="4" width="6" height="24" rx="2" fill="#9FE1CB"/>
+      <text x="32" y="23" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.04em">ENTRAYN</text>
+      <text x="32" y="38" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="8" font-weight="500" fill="#9FE1CB" opacity="0.5" letter-spacing="0.1em">PROGRESS THAT </text>
+      <text x="148" y="38" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="8" font-weight="500" fill="#9FE1CB" letter-spacing="0.1em">COMPOUNDS</text>
+    </svg>
   </a>
   <ul class="nav-links">
     <li><a href="#for-pts">For PTs</a></li>
     <li><a href="#for-clients">For Clients</a></li>
     <li><a href="#for-studios">For Studios</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="https://entrayn.app/login" style="font-size:14px;color:var(--text-sec);text-decoration:none;">Sign in</a></li>
-    <li><a href="https://entrayn.app/signup" class="nav-cta">Get started</a></li>
+    <li><a href="https://entrayn.app/login" style="font-size:14px;color:var(--text-sec);text-decoration:none;font-weight:500;">Sign in</a></li>
+    <li><a href="https://entrayn.app/signup" class="nav-cta" style="background:#085041;">Sign up</a></li>
   </ul>
 </nav>
 
@@ -407,11 +377,11 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 <section id="hero">
   <div class="hero-inner">
     <div>
-      <h1 class="hero-headline">Your PT, powered by <em>everything</em> the AI knows about you.</h1>
-      <p class="hero-sub">Entrayn is the first training platform where every session your client logs makes their next programme smarter. The AI handles programme design. You handle the coaching.</p>
+      <h1 class="hero-headline">Stop building programmes. Every session logged makes the next one <em>smarter.</em></h1>
+      <p class="hero-sub">Entrayn Intelligence is your co-pilot. You focus on the coaching. It takes care of the rest.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
-        <a href="https://entrayn.app/signup?role=pt" style="display:inline-block;padding:14px 28px;background:var(--green-mid);color:white;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;border-radius:6px;text-decoration:none;">Start coaching →</a>
-        <a href="https://entrayn.app/signup?role=client" style="display:inline-block;padding:14px 28px;background:rgba(255,255,255,0.1);color:white;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;border-radius:6px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);">Start training →</a>
+        <a href="https://entrayn.app/signup?role=pt" style="display:inline-block;padding:14px 28px;background:var(--green-mid);color:white;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;border-radius:6px;text-decoration:none;">Sign up as a coach →</a>
+        <a href="https://entrayn.app/signup?role=client" style="display:inline-block;padding:14px 28px;background:rgba(255,255,255,0.1);color:white;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;border-radius:6px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);">Sign up to train →</a>
       </div>
       <p class="hero-note">Free to get started. No credit card required.</p>
     </div>
@@ -458,7 +428,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
               <div class="ss-logo">
                 <span class="b1" style="height:4px"></span><span class="b2" style="height:7px"></span><span class="b3" style="height:11px"></span>
               </div>
-              <div><div class="ss-title">Entrayn</div><div class="ss-sub">PT dashboard</div></div>
+              <div><div class="ss-title">Entrayn</div><div class="ss-sub">Coach dashboard</div></div>
             </div>
             <div class="ss-body">
               <div class="mini-stat-row">
@@ -564,7 +534,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 <section id="problem">
   <div class="container">
     <div class="problem-inner">
-      <p class="problem-text">PTs spend hours building programmes manually — then coach blind because their software doesn't tell them what it knows. <em>Your client logged every session this week. Did your platform tell you anything useful?</em></p>
+      <p class="problem-text">Coaches spend hours building programmes manually — then coach blind because their software doesn't tell them what it knows. <em>Your client logged every session this week. Did your platform tell you anything useful?</em></p>
       <p class="problem-detail">Entrayn closes the gap between what your client does and what you know as their trainer. <strong>Every session, every check-in, every metric — synthesised into a coaching brief before you even pick up your phone.</strong> So you spend less time building spreadsheets and more time doing what you got into this for.</p>
     </div>
   </div>
@@ -593,13 +563,13 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       </div>
       <div class="flywheel-step">
         <div class="flywheel-num">4</div>
-        <div class="flywheel-step-title">PT coaches with context</div>
-        <p class="flywheel-step-body">Before every session the PT gets a plain-English briefing: what happened this week, what to focus on, what the data says.</p>
+        <div class="flywheel-step-title">Coach with context</div>
+        <p class="flywheel-step-body">Before every session the coach gets a plain-English briefing: what happened this week, what to focus on, what the data says.</p>
       </div>
     </div>
     <div class="flywheel-moat">
       <div class="flywheel-moat-icon">🔒</div>
-      <p class="flywheel-moat-text"><strong>Your training history is irreplaceable.</strong> Unlike any other PT platform, Entrayn gets more valuable the longer you use it. Every block your client completes is data that makes the next block smarter. That history lives here — and it compounds.</p>
+      <p class="flywheel-moat-text"><strong>Your training history is irreplaceable.</strong> Unlike any other coaching platform, Entrayn gets more valuable the longer you use it. Every block your client completes is data that makes the next block smarter. That history lives here — and it compounds.</p>
     </div>
   </div>
 </section>
@@ -639,7 +609,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   <div class="container">
     <div class="two-col">
       <div>
-        <p class="eyebrow">For personal trainers</p>
+        <p class="eyebrow">For coaches</p>
         <h2 class="section-headline" style="margin-bottom:40px;">You used to spend two hours building a programme. <em>Now you spend twenty minutes reviewing one.</em></h2>
         <div class="feature-list">
           <div class="feature-item">
@@ -660,7 +630,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
           </div>
         </div>
         <div class="pt-callout">
-          <div class="pt-callout-lbl">PT Pricing — flat rate</div>
+          <div class="pt-callout-lbl">Coaching plans — flat rate</div>
           <div class="pt-tiers">
             <div><div class="pt-tier-name">Base</div><div class="pt-tier-price">$49<span>/mo</span></div><div class="pt-tier-note">Up to 20 clients</div></div>
             <div><div class="pt-tier-name">Pro</div><div class="pt-tier-price">$69<span>/mo</span></div><div class="pt-tier-note">Unlimited clients</div></div>
@@ -707,14 +677,14 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
     <h2 class="section-headline">Training that learns from you.</h2>
     <div class="clients-grid">
       <div class="client-card">
-        <div class="client-tag">Training with a PT</div>
+        <div class="client-tag">Training with a coach</div>
         <h3 class="client-card-title">Your programme, your progress — all in one place.</h3>
-        <p class="client-card-body">When your trainer uses Entrayn, you get the full client app included at no extra cost. See your sessions, log your sets, check in daily, and watch your progress compound. Your PT sees everything in real time.</p>
+        <p class="client-card-body">When your trainer uses Entrayn, you get the full client app included at no extra cost. See your sessions, log your sets, check in daily, and watch your progress compound. Your coach sees everything in real time.</p>
       </div>
       <div class="client-card">
         <div class="client-tag">Training solo</div>
         <h3 class="client-card-title">A programme that gets smarter every session.</h3>
-        <p class="client-card-body">No PT? Entrayn builds your programme from your goals and available days — then learns from your check-ins, session logs, and progress over time. The longer you train on Entrayn, the more accurate and personalised your plan becomes. No guesswork. No plateaus.</p>
+        <p class="client-card-body">No coach? Entrayn builds your programme from your goals and available days — then learns from your check-ins, session logs, and progress over time. The longer you train on Entrayn, the more accurate and personalised your plan becomes. No guesswork. No plateaus.</p>
       </div>
     </div>
   </div>
@@ -727,7 +697,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       <p class="eyebrow">For gyms & studios</p>
       <h2 class="section-headline" style="margin-bottom:32px;">One platform. Your whole team. Your brand.</h2>
       <div style="width:40px;height:2px;background:var(--green-light);margin-bottom:36px;"></div>
-      <p class="studios-body"><strong>One Studio subscription covers every trainer in your team.</strong> Each PT gets their own dashboard and client roster. Your clients get a premium app experience. You get visibility across the whole studio — and optionally, your own branding on the platform. White-label ready.</p>
+      <p class="studios-body"><strong>One Studio subscription covers every trainer in your team.</strong> Each coach gets their own dashboard and client roster. Your clients get a premium app experience. You get visibility across the whole studio — and optionally, your own branding on the platform. White-label ready.</p>
       <a href="mailto:hello@entrayn.app" class="text-link">Talk to us about Studio access →</a>
     </div>
   </div>
@@ -740,7 +710,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
     <h2 class="section-headline">Simple, flat-rate pricing.</h2>
 
     <div class="pricing-tabs">
-      <button class="ptab active" onclick="switchTab('pt',this)">For Personal Trainers</button>
+      <button class="ptab active" onclick="switchTab('pt',this)">For Coaches</button>
       <button class="ptab" onclick="switchTab('client',this)">For Clients</button>
     </div>
 
@@ -797,7 +767,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
           <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Get started</a>
         </div>
       </div>
-      <p class="pricing-note">All PT plans include the client app at no cost to your clients. No per-seat fees. No surprises.</p>
+      <p class="pricing-note">All coaching plans include the client app at no cost to your clients. No per-seat fees. No surprises.</p>
     </div>
 
     <!-- Client Panel -->
@@ -835,7 +805,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
           <a href="https://entrayn.app/signup?role=client" class="pc-btn">Get started</a>
         </div>
         <div class="pc pc-connected">
-          <div class="pc-name" style="color:var(--green-dark)">Connected to a PT</div>
+          <div class="pc-name" style="color:var(--green-dark)">Connected to a coach</div>
           <div class="pc-price" style="color:var(--green-dark)">Free</div>
           <div class="pc-period">included with your trainer</div>
           <div class="pc-div" style="background:rgba(8,80,65,.12)"></div>
@@ -844,13 +814,13 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
             <li style="color:var(--text)">Session logging</li>
             <li style="color:var(--text)">Full progress tracking</li>
             <li style="color:var(--text)">Daily check-ins & wellbeing</li>
-            <li style="color:var(--text)">AI insights (shared with PT)</li>
+            <li style="color:var(--text)">AI insights (shared with coach)</li>
             <li style="color:var(--text)">Health data integration</li>
           </ul>
           <div style="padding-top:8px;font-size:13px;color:var(--green-dark);font-weight:500;text-align:center;margin-top:auto;">Ask your trainer about Entrayn</div>
         </div>
       </div>
-      <p class="pricing-note">Clients connected to any PT on Entrayn get full premium access — no payment required.</p>
+      <p class="pricing-note">Clients connected to any coach on Entrayn get full premium access — no payment required.</p>
     </div>
   </div>
 </section>
@@ -865,10 +835,10 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       </div>
       <div>
         <p class="founder-eyebrow">Why Entrayn exists</p>
-        <p class="founder-pull">"Built by someone who has been the client — through injury, through rehab, through the gap between what a good PT knows and what their software shows them."</p>
+        <p class="founder-pull">"Built by someone who has been the client — through injury, through rehab, through the gap between what a good coach knows and what their software shows them."</p>
         <p class="founder-body">I was training for a 50km-a-day charity challenge — 50 consecutive days, raising $50,000 for the Mirabel Foundation supporting vulnerable children. Running 17 hours a week, I dropped strength training to manage the load. I thought I was being efficient. I was wrong. A pinched lateral plantar nerve put me off running for eight months. Saline hydrodissection. Six months of rehab.</p>
-        <p class="founder-body">The whole time, I was logging in a Google Sheet. My PT had no real visibility. And the gap between what a skilled trainer knows about their client and what their software actually surfaces to them was the most obvious problem I'd ever seen go unsolved.</p>
-        <p class="founder-body">Entrayn is the tool I wished existed. Not a scheduling app. Not another workout logger. The intelligence layer that closes the gap — so PTs can coach with context, and clients can train with a plan that actually learns from them.</p>
+        <p class="founder-body">The whole time, I was logging in a Google Sheet. My coach had no real visibility. And the gap between what a skilled trainer knows about their client and what their software actually surfaces to them was the most obvious problem I'd ever seen go unsolved.</p>
+        <p class="founder-body">Entrayn is the tool I wished existed. Not a scheduling app. Not another workout logger. The intelligence layer that closes the gap — so coaches can coach with context, and clients can train with a plan that actually learns from them.</p>
         <div class="founder-sig">Mark Carpenter<span>Founder, Entrayn — Melbourne, Australia</span></div>
       </div>
     </div>
@@ -880,8 +850,8 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   <div class="container">
     <div class="testimonial-wrap">
       <div class="testimonial-box">
-        <p class="testimonial-quote">“Better than all other PT apps I’ve used — easy to use and the coaching insights are genuinely useful.”</p>
-        <div class="testimonial-source">Dominic · Personal Trainer, UK</div>
+        <p class="testimonial-quote">“Better than all other coaching apps I’ve used — easy to use and the coaching insights are genuinely useful.”</p>
+        <div class="testimonial-source">Dominic · Coach, UK</div>
       </div>
     </div>
   </div>
@@ -894,12 +864,12 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
     <h2 class="section-headline">FAQ</h2>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q" onclick="faq(this)">Does Entrayn replace my job as a PT?<span class="faq-icon">+</span></div>
-        <div class="faq-a">No — and that's the whole point. PTs got into this because they love coaching people, not building spreadsheets. Entrayn handles programme design and data synthesis so you can spend your time on what actually matters: the relationship, the accountability, the coaching moments. The AI is the engine. You're the expert and the human. Together you deliver better outcomes than either could alone.</div>
+        <div class="faq-q" onclick="faq(this)">Does Entrayn replace my job as a coach?<span class="faq-icon">+</span></div>
+        <div class="faq-a">No — and that's the whole point. Coaches got into this because they love coaching people, not building spreadsheets. Entrayn handles programme design and data synthesis so you can spend your time on what actually matters: the relationship, the accountability, the coaching moments. The AI is the engine. You're the expert and the human. Together you deliver better outcomes than either could alone.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="faq(this)">Is Entrayn free for my clients?<span class="faq-icon">+</span></div>
-        <div class="faq-a">Yes. Clients connected to a PT on Entrayn get the full premium client app at no cost to them — it's included in your PT subscription. Solo clients can use a free tier, or upgrade to premium for $9.99/month.</div>
+        <div class="faq-a">Yes. Clients connected to a coach on Entrayn get the full premium client app at no cost to them — it's included in your coaching subscription. Solo clients can use a free tier, or upgrade to premium for $9.99/month.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="faq(this)">What happens when I join the waitlist?<span class="faq-icon">+</span></div>
@@ -911,7 +881,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="faq(this)">What makes Entrayn different from Everfit or TrueCoach?<span class="faq-icon">+</span></div>
-        <div class="faq-a">Most PT platforms charge per client, so the more you grow the more you pay. Entrayn is flat-rate — unlimited clients, one price. But the deeper difference is the data flywheel: Entrayn gets more valuable the longer a client trains on it. Their accumulated session history, check-in data, and progress trends make every subsequent programme smarter. No other platform does this.</div>
+        <div class="faq-a">Most coaching platforms charge per client, so the more you grow the more you pay. Entrayn is flat-rate — unlimited clients, one price. But the deeper difference is the data flywheel: Entrayn gets more valuable the longer a client trains on it. Their accumulated session history, check-in data, and progress trends make every subsequent programme smarter. No other platform does this.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="faq(this)">Is my data secure?<span class="faq-icon">+</span></div>
@@ -938,17 +908,14 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 
 <!-- ════════ FOOTER ════════ -->
 <footer>
-  <div class="logo-lockup-wrap">
-    <div class="logo-lockup-top">
-      <div class="logo-icon-lg">
-        <span class="b1" style="height:8px"></span>
-        <span class="b2" style="height:14px"></span>
-        <span class="b3" style="height:22px"></span>
-      </div>
-      <span class="logo-wordmark" style="color:rgba(255,255,255,.5);font-size:24px;letter-spacing:0.04em;">Entrayn</span>
-    </div>
-    <span class="logo-lockup-strapline" style="color:rgba(255,255,255,.35);font-size:13px;font-weight:700;">Progress that compounds.</span>
-  </div>
+  <svg width="180" height="56" viewBox="0 0 180 56" xmlns="http://www.w3.org/2000/svg">
+    <rect x="78" y="14" width="6" height="8" rx="2" fill="#9FE1CB"/>
+    <rect x="87" y="9" width="6" height="13" rx="2" fill="#1D9E75"/>
+    <rect x="96" y="4" width="6" height="18" rx="2" fill="#085041"/>
+    <text x="90" y="40" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#9FE1CB" opacity="0.8" letter-spacing="0.05em">ENTRAYN</text>
+    <text x="90" y="52" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="7.5" font-weight="500" fill="#9FE1CB" opacity="0.4" letter-spacing="0.08em">PROGRESS THAT </text>
+    <text x="123" y="52" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="7.5" font-weight="500" fill="#9FE1CB" opacity="0.6" letter-spacing="0.08em">COMPOUNDS</text>
+  </svg>
   <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
     <div class="footer-right">© 2026 Entrayn Pty Ltd. All rights reserved.</div>
     <div style="display:flex;gap:20px;">
