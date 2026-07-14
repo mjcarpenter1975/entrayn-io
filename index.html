@@ -293,13 +293,6 @@ section { padding:112px 48px; }
 .ptab.active { background:var(--white); color:var(--text); font-weight:600; box-shadow:0 1px 4px rgba(0,0,0,.08); }
 .pricing-panel { display:none; }
 .pricing-panel.active { display:block; }
-.billing-toggle { display:flex; align-items:center; gap:12px; margin-bottom:36px; }
-.btl { font-size:14px; color:var(--text-sec); cursor:pointer; }
-.btl.active { color:var(--text); font-weight:600; }
-.tswitch { width:44px; height:24px; background:var(--green-mid); border-radius:12px; position:relative; cursor:pointer; border:none; transition:background .2s; flex-shrink:0; }
-.tswitch::after { content:''; position:absolute; width:18px; height:18px; background:white; border-radius:50%; top:3px; left:3px; transition:transform .2s; }
-.tswitch.on::after { transform:translateX(20px); }
-.save-badge { font-size:11px; font-weight:600; background:var(--green-bg); color:var(--green-dark); padding:2px 8px; border-radius:20px; border:1px solid rgba(8,80,65,.15); }
 .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:28px; }
 .pc { background:var(--white); border-radius:16px; padding:32px 28px; border:1px solid var(--border); position:relative; transition:box-shadow .2s; display:flex; flex-direction:column; }
 .pc:hover { box-shadow:0 8px 32px rgba(0,0,0,.06); }
@@ -311,8 +304,6 @@ section { padding:112px 48px; }
 .pc.featured .pc-price { color:white; }
 .pc-period { font-size:13px; color:var(--text-sec); margin-bottom:6px; }
 .pc.featured .pc-period { color:rgba(255,255,255,.5); }
-.pc-annual { font-size:12px; color:var(--green-mid); font-weight:500; min-height:18px; margin-bottom:22px; }
-.pc.featured .pc-annual { color:var(--green-light); }
 .pc-div { height:1px; background:var(--border); margin-bottom:18px; }
 .pc.featured .pc-div { background:rgba(255,255,255,.12); }
 .pc-features { list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:26px; flex:1; }
@@ -332,8 +323,6 @@ section { padding:112px 48px; }
 .pc-free-btn:hover { border-color:var(--green-light); color:var(--text); }
 .pc-connected { border-color:var(--green-light); background:var(--green-bg); }
 .pricing-note { font-size:13px; color:var(--text-sec); text-align:center; margin-top:8px; }
-.pricing-launch { margin-top:28px; text-align:center; font-size:14px; color:var(--text-sec); padding:16px 24px; background:var(--white); border-radius:8px; border:1px solid var(--border); }
-.pricing-launch strong { color:var(--text); }
 
 /* ─── FOUNDER ─── */
 #founder { background:var(--white); border-top:1px solid var(--border); }
@@ -349,7 +338,7 @@ section { padding:112px 48px; }
 /* ─── SOCIAL PROOF ─── */
 #social-proof { background:var(--bg); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
 .testimonial-wrap { max-width:640px; margin:0 auto; text-align:center; }
-.testimonial-box { background:var(--white); border-radius:16px; padding:48px; border:2px dashed var(--border); }
+.testimonial-box { background:var(--white); border-radius:16px; padding:48px; border:1px solid var(--border); }
 .testimonial-placeholder { font-size:13px; color:var(--text-sec); margin-bottom:16px; }
 .testimonial-quote { font-family:'DM Serif Display',serif; font-size:clamp(20px,2.2vw,28px); line-height:1.45; color:var(--text); font-style:italic; margin-bottom:24px; }
 .testimonial-source { font-size:14px; font-weight:600; color:var(--text-sec); }
@@ -395,10 +384,9 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
     <div class="logo-lockup-wrap">
       <div class="logo-lockup-top">
         <div class="logo-icon">
-          <span class="b1" style="height:5px"></span>
-          <span class="b2" style="height:9px"></span>
-          <span class="b3" style="height:13px"></span>
-          <span class="b4" style="height:17px"></span>
+          <span class="b1" style="height:6px"></span>
+          <span class="b2" style="height:11px"></span>
+          <span class="b3" style="height:17px"></span>
         </div>
         <span class="logo-wordmark" style="color:var(--text)">Entrayn</span>
       </div>
@@ -410,7 +398,8 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
     <li><a href="#for-clients">For Clients</a></li>
     <li><a href="#for-studios">For Studios</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#final-cta" class="nav-cta">Request early access</a></li>
+    <li><a href="https://entrayn.app/login" style="font-size:14px;color:var(--text-sec);text-decoration:none;">Sign in</a></li>
+    <li><a href="https://entrayn.app/signup" class="nav-cta">Get started</a></li>
   </ul>
 </nav>
 
@@ -418,14 +407,13 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 <section id="hero">
   <div class="hero-inner">
     <div>
-      <p class="hero-eyebrow">Now in early access</p>
       <h1 class="hero-headline">Your PT, powered by <em>everything</em> the AI knows about you.</h1>
       <p class="hero-sub">Entrayn is the first training platform where every session your client logs makes their next programme smarter. The AI handles programme design. You handle the coaching.</p>
-      <div class="hero-form">
-        <input type="email" placeholder="your@email.com">
-        <button>Request early access</button>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="https://entrayn.app/signup?role=pt" style="display:inline-block;padding:14px 28px;background:var(--green-mid);color:white;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;border-radius:6px;text-decoration:none;">Start coaching →</a>
+        <a href="https://entrayn.app/signup?role=client" style="display:inline-block;padding:14px 28px;background:rgba(255,255,255,0.1);color:white;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;border-radius:6px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);">Start training →</a>
       </div>
-      <p class="hero-note">No credit card required. Launching soon.</p>
+      <p class="hero-note">Free to get started. No credit card required.</p>
     </div>
 
     <!-- CAROUSEL -->
@@ -437,8 +425,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
           <div class="carousel-slide active">
             <div class="ss-header">
               <div class="ss-logo">
-                <span class="b1" style="height:3px"></span><span class="b2" style="height:5px"></span>
-                <span class="b3" style="height:8px"></span><span class="b4" style="height:11px"></span>
+                <span class="b1" style="height:4px"></span><span class="b2" style="height:7px"></span><span class="b3" style="height:11px"></span>
               </div>
               <div><div class="ss-title">James M. — Insights</div><div class="ss-sub">Strength · 3 days/wk</div></div>
               <div style="margin-left:auto;font-size:9px;color:var(--green-mid);font-weight:500;">↻ Refresh</div>
@@ -469,8 +456,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
           <div class="carousel-slide">
             <div class="ss-header">
               <div class="ss-logo">
-                <span class="b1" style="height:3px"></span><span class="b2" style="height:5px"></span>
-                <span class="b3" style="height:8px"></span><span class="b4" style="height:11px"></span>
+                <span class="b1" style="height:4px"></span><span class="b2" style="height:7px"></span><span class="b3" style="height:11px"></span>
               </div>
               <div><div class="ss-title">Entrayn</div><div class="ss-sub">PT dashboard</div></div>
             </div>
@@ -504,8 +490,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
           <div class="carousel-slide">
             <div class="ss-header">
               <div class="ss-logo">
-                <span class="b1" style="height:3px"></span><span class="b2" style="height:5px"></span>
-                <span class="b3" style="height:8px"></span><span class="b4" style="height:11px"></span>
+                <span class="b1" style="height:4px"></span><span class="b2" style="height:7px"></span><span class="b3" style="height:11px"></span>
               </div>
               <div><div class="ss-title">Entrayn</div><div class="ss-sub">Progress</div></div>
             </div>
@@ -529,8 +514,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
           <div class="carousel-slide">
             <div class="ss-header">
               <div class="ss-logo">
-                <span class="b1" style="height:3px"></span><span class="b2" style="height:5px"></span>
-                <span class="b3" style="height:8px"></span><span class="b4" style="height:11px"></span>
+                <span class="b1" style="height:4px"></span><span class="b2" style="height:7px"></span><span class="b3" style="height:11px"></span>
               </div>
               <div><div class="ss-title">Good morning, James.</div><div class="ss-sub">Here is your programme.</div></div>
             </div>
@@ -744,7 +728,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       <h2 class="section-headline" style="margin-bottom:32px;">One platform. Your whole team. Your brand.</h2>
       <div style="width:40px;height:2px;background:var(--green-light);margin-bottom:36px;"></div>
       <p class="studios-body"><strong>One Studio subscription covers every trainer in your team.</strong> Each PT gets their own dashboard and client roster. Your clients get a premium app experience. You get visibility across the whole studio — and optionally, your own branding on the platform. White-label ready.</p>
-      <a href="mailto:hello@entrayn.io" class="text-link">Talk to us about Studio access →</a>
+      <a href="mailto:hello@entrayn.app" class="text-link">Talk to us about Studio access →</a>
     </div>
   </div>
 </section>
@@ -762,18 +746,11 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 
     <!-- PT Panel -->
     <div class="pricing-panel active" id="panel-pt">
-      <div class="billing-toggle">
-        <span class="btl active" id="lm-pt">Monthly</span>
-        <button class="tswitch" id="ts-pt" onclick="toggleBilling('pt')"></button>
-        <span class="btl" id="la-pt">Annual</span>
-        <span class="save-badge">Save 20%</span>
-      </div>
       <div class="pricing-grid">
         <div class="pc">
           <div class="pc-name">Base</div>
           <div class="pc-price" id="pp-base">$49</div>
           <div class="pc-period">per month</div>
-          <div class="pc-annual" id="pa-base">&nbsp;</div>
           <div class="pc-div"></div>
           <ul class="pc-features">
             <li>Up to 20 clients</li>
@@ -784,14 +761,13 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
             <li class="off">AI insights per client</li>
             <li class="off">Priority support</li>
           </ul>
-          <button class="pc-btn">Join the waitlist</button>
+          <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Get started</a>
         </div>
         <div class="pc featured">
           <div class="pc-badge">Most popular</div>
           <div class="pc-name">Pro</div>
           <div class="pc-price" id="pp-pro">$69</div>
           <div class="pc-period">per month</div>
-          <div class="pc-annual" id="pa-pro">&nbsp;</div>
           <div class="pc-div"></div>
           <ul class="pc-features">
             <li>Unlimited clients</li>
@@ -802,13 +778,12 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
             <li>AI insights per client</li>
             <li>Priority support</li>
           </ul>
-          <button class="pc-btn">Join the waitlist</button>
+          <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Get started</a>
         </div>
         <div class="pc">
           <div class="pc-name">Studio</div>
           <div class="pc-price" id="pp-stu">$149</div>
           <div class="pc-period">per month</div>
-          <div class="pc-annual" id="pa-stu">&nbsp;</div>
           <div class="pc-div"></div>
           <ul class="pc-features">
             <li>Multiple trainers</li>
@@ -819,27 +794,19 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
             <li>AI insights per client</li>
             <li>White-label ready</li>
           </ul>
-          <button class="pc-btn">Join the waitlist</button>
+          <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Get started</a>
         </div>
       </div>
       <p class="pricing-note">All PT plans include the client app at no cost to your clients. No per-seat fees. No surprises.</p>
-      <div class="pricing-launch"><strong>Launching soon.</strong> Join the waitlist to lock in early access pricing before we go public.</div>
     </div>
 
     <!-- Client Panel -->
     <div class="pricing-panel" id="panel-client">
-      <div class="billing-toggle">
-        <span class="btl active" id="lm-cl">Monthly</span>
-        <button class="tswitch" id="ts-cl" onclick="toggleBilling('client')"></button>
-        <span class="btl" id="la-cl">Annual</span>
-        <span class="save-badge">Save 20%</span>
-      </div>
       <div class="pricing-grid">
         <div class="pc">
           <div class="pc-name">Free</div>
           <div class="pc-price">$0</div>
           <div class="pc-period">forever</div>
-          <div class="pc-annual">&nbsp;</div>
           <div class="pc-div"></div>
           <ul class="pc-features">
             <li>Personalised training programme</li>
@@ -849,14 +816,13 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
             <li class="off">AI-generated insights</li>
             <li class="off">Health data integration</li>
           </ul>
-          <button class="pc-btn pc-free-btn">Get started free</button>
+          <a href="https://entrayn.app/signup?role=client" class="pc-btn pc-free-btn">Get started free</a>
         </div>
         <div class="pc featured">
           <div class="pc-badge">Full experience</div>
           <div class="pc-name">Premium</div>
           <div class="pc-price" id="pp-prem">$9.99</div>
           <div class="pc-period">per month</div>
-          <div class="pc-annual" id="pa-prem">&nbsp;</div>
           <div class="pc-div"></div>
           <ul class="pc-features">
             <li>Personalised training programme</li>
@@ -866,13 +832,12 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
             <li>AI-generated insights</li>
             <li>Health data integration</li>
           </ul>
-          <button class="pc-btn">Join the waitlist</button>
+          <a href="https://entrayn.app/signup?role=client" class="pc-btn">Get started</a>
         </div>
         <div class="pc pc-connected">
           <div class="pc-name" style="color:var(--green-dark)">Connected to a PT</div>
           <div class="pc-price" style="color:var(--green-dark)">Free</div>
           <div class="pc-period">included with your trainer</div>
-          <div class="pc-annual" style="color:var(--green-mid)">Premium features, no cost to you</div>
           <div class="pc-div" style="background:rgba(8,80,65,.12)"></div>
           <ul class="pc-features">
             <li style="color:var(--text)">Your trainer's programme, live</li>
@@ -886,7 +851,6 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
         </div>
       </div>
       <p class="pricing-note">Clients connected to any PT on Entrayn get full premium access — no payment required.</p>
-      <div class="pricing-launch"><strong>Launching soon.</strong> Join the waitlist to be first when we open.</div>
     </div>
   </div>
 </section>
@@ -916,9 +880,8 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   <div class="container">
     <div class="testimonial-wrap">
       <div class="testimonial-box">
-        <p class="testimonial-placeholder">First testimonial — coming at launch</p>
-        <p class="testimonial-quote">"[Caio Barbosa's words go here — Stark Strength Studio, Melbourne]"</p>
-        <div class="testimonial-source">Caio Barbosa · Stark Strength Studio, Melbourne</div>
+        <p class="testimonial-quote">“Better than all other PT apps I’ve used — easy to use and the coaching insights are genuinely useful.”</p>
+        <div class="testimonial-source">Dominic · Personal Trainer, UK</div>
       </div>
     </div>
   </div>
@@ -956,7 +919,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="faq(this)">When does Entrayn launch?<span class="faq-icon">+</span></div>
-        <div class="faq-a">We're in closed beta now with our first PT partner in Melbourne. Full launch is coming soon. Join the waitlist to be notified the day we open and to lock in early access pricing.</div>
+        <div class="faq-a">Entrayn is live now. Sign up free at entrayn.app and get started today. No credit card required.</div>
       </div>
     </div>
   </div>
@@ -965,12 +928,12 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 <!-- ════════ FINAL CTA ════════ -->
 <section id="final-cta">
   <h2 class="cta-headline">Ready to run a smarter practice?</h2>
-  <p class="cta-sub">Join the waitlist and be first to access Entrayn when we launch.</p>
-  <div class="final-form">
-    <input type="email" placeholder="your@email.com">
-    <button>Join waitlist</button>
+  <p class="cta-sub">Join coaches and athletes already training on Entrayn.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;">
+    <a href="https://entrayn.app/signup?role=pt" style="display:inline-block;padding:15px 32px;background:var(--green-mid);color:white;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;border-radius:6px;text-decoration:none;">I’m a coach →</a>
+    <a href="https://entrayn.app/signup?role=client" style="display:inline-block;padding:15px 32px;background:rgba(255,255,255,0.1);color:white;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;border-radius:6px;text-decoration:none;border:1px solid rgba(255,255,255,0.2);">I’m training →</a>
   </div>
-  <p class="final-note">No credit card required. Unsubscribe any time.</p>
+  <p class="final-note">Free to get started. No credit card required.</p>
 </section>
 
 <!-- ════════ FOOTER ════════ -->
@@ -978,10 +941,9 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   <div class="logo-lockup-wrap">
     <div class="logo-lockup-top">
       <div class="logo-icon-lg">
-        <span class="b1" style="height:7px"></span>
-        <span class="b2" style="height:12px"></span>
-        <span class="b3" style="height:17px"></span>
-        <span class="b4" style="height:22px"></span>
+        <span class="b1" style="height:8px"></span>
+        <span class="b2" style="height:14px"></span>
+        <span class="b3" style="height:22px"></span>
       </div>
       <span class="logo-wordmark" style="color:rgba(255,255,255,.5);font-size:24px;letter-spacing:0.04em;">Entrayn</span>
     </div>
@@ -1030,33 +992,6 @@ function switchTab(tab, btn) {
   document.querySelectorAll('.pricing-panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('panel-'+tab).classList.add('active');
-}
-
-// ── BILLING TOGGLE ──
-let ptOn=false, clOn=false;
-const ptP  = {mo:{base:'$49',pro:'$69',stu:'$149'}, yr:{base:'$39',pro:'$55',stu:'$119'}};
-const clP  = {mo:{prem:'$9.99'}, yr:{prem:'$7.99'}};
-
-function toggleBilling(a) {
-  if(a==='pt') {
-    ptOn=!ptOn;
-    document.getElementById('ts-pt').classList.toggle('on',ptOn);
-    document.getElementById('lm-pt').classList.toggle('active',!ptOn);
-    document.getElementById('la-pt').classList.toggle('active',ptOn);
-    const p = ptOn?ptP.yr:ptP.mo;
-    document.getElementById('pp-base').textContent=p.base;
-    document.getElementById('pp-pro').textContent=p.pro;
-    document.getElementById('pp-stu').textContent=p.stu;
-    const n = ptOn?'billed annually':'\u00a0';
-    ['pa-base','pa-pro','pa-stu'].forEach(id=>document.getElementById(id).textContent=n);
-  } else {
-    clOn=!clOn;
-    document.getElementById('ts-cl').classList.toggle('on',clOn);
-    document.getElementById('lm-cl').classList.toggle('active',!clOn);
-    document.getElementById('la-cl').classList.toggle('active',clOn);
-    document.getElementById('pp-prem').textContent=clOn?clP.yr.prem:clP.mo.prem;
-    document.getElementById('pa-prem').textContent=clOn?'billed annually — save $24/yr':'\u00a0';
-  }
 }
 
 // ── FAQ ──
