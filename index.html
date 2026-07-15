@@ -80,6 +80,12 @@ nav.nav-scrolled .nav-signin { color:#57564f !important; }
 nav.nav-scrolled .nav-cta { background:#085041 !important; }
 nav.nav-scrolled .nav-cta:hover { background:#063d31 !important; }
 
+/* ── Right cluster + hamburger (hamburger hidden until mobile) ── */
+.nav-right { display:flex; align-items:center; gap:34px; }
+.nav-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; padding:9px 8px; background:transparent; border:none; cursor:pointer; }
+.nav-toggle span { display:block; width:100%; height:2px; border-radius:2px; background:#ffffff; transition:all 0.3s ease; }
+nav.nav-scrolled .nav-toggle span { background:#085041; }
+
 /* ─── HERO ─── */
 #hero {
   min-height:100vh; background:var(--green-dark);
@@ -378,6 +384,85 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 .footer-wordmark { font-size:15px; font-weight:600; color:rgba(255,255,255,.45); }
 .footer-strapline { font-size:11px; color:rgba(255,255,255,.22); margin-top:3px; }
 
+/* ═══════════════ MOBILE / RESPONSIVE (≤768px) ═══════════════ */
+@media (max-width:768px) {
+  /* Section padding: 112px→64px vertical, 48px→24px sides */
+  section { padding:64px 24px; }
+  #problem { padding:64px 24px; }
+  #flywheel { padding:64px 24px; }
+  #final-cta { padding:72px 24px; }
+
+  /* ── NAV → hamburger ── */
+  nav { padding:0 20px; }
+  .nav-right { gap:12px; }
+  .nav-toggle { display:flex; }
+  .nav-links {
+    display:none; position:absolute; top:68px; left:0; right:0;
+    flex-direction:column; align-items:stretch; gap:0;
+    background:rgba(245,245,244,0.98); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border); box-shadow:0 14px 28px rgba(0,0,0,.12);
+    padding:6px 20px 14px;
+  }
+  nav.nav-open .nav-links { display:flex; }
+  .nav-links li { width:100%; }
+  .nav-links a, nav.nav-scrolled .nav-links a { color:#1a1a18; display:block; padding:13px 2px; font-size:16px; border-bottom:1px solid var(--border); }
+  .nav-links li:last-child a { border-bottom:none; }
+  .nav-links .nav-signin { color:#1a1a18 !important; }
+  /* Open state → solid bar + dark logo/burger for cohesion */
+  nav.nav-open { background:rgba(245,245,244,0.98); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+  nav.nav-open .nav-logo-bar { fill:#085041; }
+  nav.nav-open .nav-logo-wordmark { fill:#085041; }
+  nav.nav-open .nav-toggle span { background:#085041; }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity:0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  .nav-cta { padding:8px 15px; font-size:13px !important; }
+
+  /* ── HERO → single column, carousel hidden ── */
+  #hero { padding:100px 24px 56px; }
+  .hero-inner { grid-template-columns:1fr; gap:0; }
+  .hero-visual { display:none; }
+  .hero-headline span:first-child { font-size:36px !important; margin-bottom:14px !important; }
+  .hero-headline span:last-child { font-size:20px !important; }
+  .hero-sub { font-size:16px; margin-bottom:32px; }
+  #hero .hero-sub + div { flex-direction:column; align-items:stretch; }
+  #hero .hero-sub + div a { text-align:center; }
+
+  /* ── Grids → single column ── */
+  .section-headline { margin-bottom:36px; }
+  .flywheel-headline { margin-bottom:40px; }
+  .flywheel-grid { grid-template-columns:1fr; gap:36px; }
+  .flywheel-step { padding:0; }
+  .flywheel-moat { flex-direction:column; align-items:flex-start; gap:16px; padding:24px; margin-top:40px; }
+  .steps-grid { grid-template-columns:1fr; gap:32px; }
+  .two-col { grid-template-columns:1fr; gap:44px; }
+  .insights-panel { position:static; }
+  .pt-tiers { flex-wrap:wrap; gap:18px 28px; }
+  .clients-grid { grid-template-columns:1fr; gap:20px; }
+  .client-card { padding:28px 24px; }
+  .pricing-grid { grid-template-columns:1fr; gap:20px; }
+
+  /* ── FOUNDER → single column ── */
+  .founder-grid { grid-template-columns:1fr; gap:28px; }
+  .founder-photo { max-width:200px; aspect-ratio:1/1; }
+
+  /* ── Testimonial / CTA ── */
+  .testimonial-box { padding:32px 24px; }
+  #final-cta .cta-sub + div { flex-direction:column; align-items:stretch; }
+
+  /* ── FOOTER → stack ── */
+  footer { flex-direction:column; align-items:flex-start; gap:22px; padding:40px 24px; }
+  footer > div { align-items:flex-start !important; }
+}
+
+/* ── Finer tuning for small phones (≤480px) ── */
+@media (max-width:480px) {
+  .hero-headline span:first-child { font-size:32px !important; }
+  .pricing-tabs { width:100%; }
+  .ptab { flex:1; text-align:center; }
+  .testimonial-box { padding:28px 20px; }
+}
+
 </style>
 </head>
 <body>
@@ -392,14 +477,17 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       <text class="nav-logo-wordmark" x="32" y="20" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="20" font-weight="700" letter-spacing="0.04em">ENTRAYN</text>
     </svg>
   </a>
-  <ul class="nav-links">
-    <li><a href="#for-pts">For Coaches</a></li>
-    <li><a href="#for-clients">For Clients</a></li>
-    <li><a href="#for-studios">For Studios</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="https://entrayn.app/login" class="nav-signin">Sign in</a></li>
-    <li><a href="https://entrayn.app/signup" class="nav-cta">Sign up</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#for-pts">For Coaches</a></li>
+      <li><a href="#for-clients">For Clients</a></li>
+      <li><a href="#for-studios">For Studios</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="https://entrayn.app/login" class="nav-signin">Sign in</a></li>
+    </ul>
+    <a href="https://entrayn.app/signup" class="nav-cta">Sign up</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
 </nav>
 
 <!-- ════════ HERO ════════ -->
@@ -1007,6 +1095,18 @@ function updateNav() {
 }
 window.addEventListener('scroll', updateNav, {passive:true});
 updateNav();
+
+// ── MOBILE HAMBURGER MENU ──
+const navToggle = document.getElementById('navToggle');
+navToggle.addEventListener('click', () => {
+  const open = navEl.classList.toggle('nav-open');
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+// Close the menu after tapping any link inside it
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+  navEl.classList.remove('nav-open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}));
 </script>
 </body>
 </html>
