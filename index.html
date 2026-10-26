@@ -5,7 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Entrayn — Progress that compounds.</title>
 <script src="https://app.termly.io/resource-blocker/a99b93a9-1b7b-4818-bd18-06ebfd9cb36d?autoBlock=on"></script>
-<link rel="icon" href="entrayn-icon-only.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/entrayn-icon-only.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="Entrayn — the coaching platform where every session makes the next one smarter. Progress that compounds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://entrayn.io">
+<meta property="og:title" content="Entrayn — Progress that compounds.">
+<meta property="og:description" content="The coaching platform where every session makes the next one smarter.">
+<meta property="og:image" content="https://entrayn.io/brand/entrayn-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://entrayn.io/brand/entrayn-og.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
 
@@ -44,8 +56,11 @@ nav.nav-scrolled {
   box-shadow:0 1px 20px rgba(0,0,0,0.06);
 }
 /* ── Logo SVG colour states ── */
-.nav-logo-bar       { fill:#9FE1CB; transition:fill 0.3s ease; }
-.nav-scrolled .nav-logo-bar   { fill:#085041; }
+.nav-logo-bar       { fill:#9FE1CB; transition:fill 0.3s ease, fill-opacity 0.3s ease; }
+.nav-logo-bar.b1 { fill-opacity:0.4; } .nav-logo-bar.b2 { fill-opacity:0.7; }
+.nav-scrolled .nav-logo-bar, nav.nav-open .nav-logo-bar { fill-opacity:1; }
+.nav-scrolled .nav-logo-bar.b2, nav.nav-open .nav-logo-bar.b2 { fill:#1D9E75; }
+.nav-scrolled .nav-logo-bar.b3, nav.nav-open .nav-logo-bar.b3 { fill:#085041; }
 .nav-logo-wordmark  { fill:#ffffff; transition:fill 0.3s ease; }
 .nav-scrolled .nav-logo-wordmark { fill:#085041; }
 .nav-logo { display:flex; align-items:center; text-decoration:none; }
@@ -410,7 +425,6 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   .nav-links .nav-signin { color:#1a1a18 !important; }
   /* Open state → solid bar + dark logo/burger for cohesion */
   nav.nav-open { background:rgba(245,245,244,0.98); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
-  nav.nav-open .nav-logo-bar { fill:#085041; }
   nav.nav-open .nav-logo-wordmark { fill:#085041; }
   nav.nav-open .nav-toggle span { background:#085041; }
   nav.nav-open .nav-toggle span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
@@ -470,11 +484,12 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 <!-- ════════ NAV ════════ -->
 <nav>
   <a href="#hero" class="nav-logo" style="line-height:0;">
-    <svg id="nav-logo-img" width="210" height="44" viewBox="0 0 220 30" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-      <rect class="nav-logo-bar" x="0"  y="18" width="6" height="8"  rx="2" opacity="0.4"/>
-      <rect class="nav-logo-bar" x="9"  y="10" width="6" height="16" rx="2" opacity="0.7"/>
-      <rect class="nav-logo-bar" x="18" y="0"  width="6" height="26" rx="2"/>
-      <text class="nav-logo-wordmark" x="32" y="20" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="20" font-weight="700" letter-spacing="0.04em">ENTRAYN</text>
+    <svg id="nav-logo-img" width="200" height="34" viewBox="0 0 329.95 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Entrayn" style="display:block;">
+      <!-- Logo kit (26 Oct 2026): bars + ENTRAYN in Geist Bold saved as shapes. Classes drive the colour swap on scroll. -->
+      <rect class="nav-logo-bar b1" x="0" y="30" width="13" height="26" rx="6.5"/>
+      <rect class="nav-logo-bar b2" x="19" y="16" width="13" height="40" rx="6.5"/>
+      <rect class="nav-logo-bar b3" x="38" y="0" width="13" height="56" rx="6.5"/>
+      <path class="nav-logo-wordmark" d="M70.7 45.75V10.25H95.4V16.64H78.3V24.79H94.8V31.11H78.3V39.36H95.8V45.75ZM105.8 45.75V10.25H114.18L128.31 34.73V10.25H135.91V45.75H127.41L113.4 22.11V45.75ZM154.77 45.75V16.64H144.14V10.25H173.03V16.64H162.4V45.75ZM181.25 45.75V10.25H196.8Q200.7 10.25 203.56 11.55Q206.43 12.85 207.99 15.23Q209.56 17.61 209.56 20.85Q209.56 23.31 208.54 25.22Q207.52 27.12 205.74 28.31Q203.96 29.5 201.67 29.81L201.49 29.33Q205.04 29.33 206.9 30.87Q208.76 32.42 209 35.57L209.88 45.75H202.14L201.48 36.77Q201.34 34.72 200.22 33.74Q199.1 32.77 196.42 32.77H188.85V45.75ZM188.85 26.38H195.94Q198.71 26.38 200.24 25.11Q201.76 23.83 201.76 21.5Q201.76 19.12 200.22 17.88Q198.67 16.64 195.72 16.64H188.85ZM217.34 45.75 230.14 10.25H239.15L251.95 45.75H244.07L241.45 38.2H227.81L225.19 45.75ZM229.95 31.96H239.34L234.66 18.23ZM268.88 45.75V31.97L256.54 10.25H264.94L272.71 24.57L280.42 10.25H288.82L276.51 31.97V45.75ZM296.15 45.75V10.25H304.53L318.66 34.73V10.25H326.26V45.75H317.76L303.75 22.11V45.75Z"/>
     </svg>
   </a>
   <div class="nav-right">
@@ -950,12 +965,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
     <div class="founder-grid">
       <!-- Brand panel (was a founder photo placeholder — the founder stays unnamed, 26 Oct 2026). -->
       <div class="founder-photo" style="background:#085041;border-color:#085041;" aria-hidden="true">
-        <svg width="88" height="88" viewBox="0 0 88 88">
-          <rect x="14" y="52" width="12" height="22" rx="3" fill="#9FE1CB"/>
-          <rect x="31" y="40" width="12" height="34" rx="3" fill="#9FE1CB"/>
-          <rect x="48" y="28" width="12" height="46" rx="3" fill="#1D9E75"/>
-          <rect x="65" y="14" width="12" height="60" rx="3" fill="#1D9E75"/>
-        </svg>
+        <img src="/brand/entrayn-mark-reversed.svg" width="64" height="70" alt="">
         <span style="color:#9FE1CB;font-family:'DM Serif Display',serif;font-style:italic;font-size:17px;">Progress that compounds.</span>
       </div>
       <div>
@@ -1033,14 +1043,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 
 <!-- ════════ FOOTER ════════ -->
 <footer>
-  <svg width="180" height="56" viewBox="0 0 180 56" xmlns="http://www.w3.org/2000/svg">
-    <rect x="78" y="14" width="6" height="8" rx="2" fill="#9FE1CB"/>
-    <rect x="87" y="9" width="6" height="13" rx="2" fill="#1D9E75"/>
-    <rect x="96" y="4" width="6" height="18" rx="2" fill="#085041"/>
-    <text x="90" y="40" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#9FE1CB" opacity="0.8" letter-spacing="0.05em">ENTRAYN</text>
-    <text x="90" y="52" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="7.5" font-weight="500" fill="#9FE1CB" opacity="0.4" letter-spacing="0.08em">PROGRESS THAT </text>
-    <text x="123" y="52" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif" font-size="7.5" font-weight="500" fill="#9FE1CB" opacity="0.6" letter-spacing="0.08em">COMPOUNDS</text>
-  </svg>
+  <img src="/brand/entrayn-logo-stacked-reversed.svg" width="170" height="76" alt="Entrayn — Progress that compounds" style="opacity:0.85;">
   <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
     <div class="footer-right">© 2026 Entrayn Pty Ltd. All rights reserved.</div>
     <div style="display:flex;gap:20px;">
