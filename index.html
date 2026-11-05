@@ -120,8 +120,8 @@ nav.nav-scrolled .nav-toggle span { background:#085041; }
   pointer-events:none;
 }
 .hero-inner {
-  max-width:1200px; margin:0 auto; width:100%;
-  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+  max-width:1320px; margin:0 auto; width:100%;
+  display:grid; grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr); gap:56px; align-items:center;
 }
 .hero-eyebrow {
   font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
@@ -159,20 +159,27 @@ nav.nav-scrolled .nav-toggle span { background:#085041; }
 .hero-form button:hover { background:#179468; }
 .hero-note { margin-top:13px; font-size:13px; color:rgba(255,255,255,.3); }
 
-/* ─── CAROUSEL ─── */
-.hero-visual { display:flex; flex-direction:column; align-items:center; gap:24px; perspective:1200px; }
-.carousel-wrap { width:310px; }
-.carousel-track {
-  width:310px; height:671px; position:relative;
-  transform:rotateY(-10deg) rotateX(3deg);
-  border-radius:20px; overflow:hidden;
-  box-shadow:0 50px 90px rgba(0,0,0,.6),0 20px 40px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.06);
-  cursor:grab; user-select:none;
-}
-.carousel-track:active { cursor:grabbing; }
-.carousel-slide { width:310px; height:671px; background:var(--bg); display:none; flex-direction:column; animation:fadeSlide .38s ease; overflow:hidden; }
-.carousel-slide.active { display:flex; }
-@keyframes fadeSlide { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+/* ─── HERO DEVICES (real screenshots) ─── */
+.hero-visual { display:flex; flex-direction:column; align-items:center; gap:28px; }
+.devices { position:relative; width:100%; max-width:660px; padding:0 70px 56px 0; cursor:grab; user-select:none; }
+.devices:active { cursor:grabbing; }
+.laptop { background:#0d1f1a; border-radius:14px; padding:0; overflow:hidden;
+  box-shadow:0 50px 90px rgba(0,0,0,.55),0 20px 40px rgba(0,0,0,.28),0 0 0 1px rgba(255,255,255,.08); }
+.laptop-bar { height:26px; display:flex; align-items:center; gap:6px; padding:0 12px; background:#16302a; }
+.laptop-bar span { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.22); }
+.laptop-screen { position:relative; aspect-ratio:1440/900; background:var(--bg); }
+.phone { position:absolute; right:0; bottom:0; width:31%; min-width:150px; background:#0d1f1a; border-radius:30px; padding:7px;
+  box-shadow:0 40px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.1); }
+.phone-screen { position:relative; aspect-ratio:393/852; border-radius:24px; overflow:hidden; background:var(--bg); }
+.hero-shot { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; opacity:0; transition:opacity .45s ease; }
+.hero-shot.active { opacity:1; }
+.carousel-pills { display:flex; gap:8px; align-items:center; justify-content:center; width:100%; padding-right:70px; }
+.carousel-pill { height:4px; border:0; padding:0; border-radius:2px; background:rgba(255,255,255,.2); cursor:pointer; transition:all .3s; flex:1; max-width:48px; }
+.carousel-pill.active { background:var(--green-light); max-width:72px; }
+.carousel-pill:hover:not(.active) { background:rgba(255,255,255,.4); }
+@media (prefers-reduced-motion:reduce) { .hero-shot { transition:none; } }
+
+/* shared mini UI (old drawn slides) */
 .ss-header {
   background:var(--bg); padding:14px 16px 10px;
   display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); flex-shrink:0;
@@ -435,7 +442,11 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   /* ── HERO → single column, carousel hidden ── */
   #hero { padding:100px 24px 56px; }
   .hero-inner { grid-template-columns:1fr; gap:0; }
-  .hero-visual { display:none; }
+  .hero-visual { margin-top:40px; }
+  .devices { padding:0; max-width:260px; margin:0 auto; }
+  .laptop { display:none; }
+  .phone { position:relative; width:100%; }
+  .carousel-pills { padding-right:0; }
   .hero-headline span:first-child { font-size:36px !important; margin-bottom:14px !important; }
   .hero-headline span:last-child { font-size:20px !important; }
   .hero-sub { font-size:16px; margin-bottom:32px; }
@@ -510,7 +521,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   <div class="hero-inner">
     <div>
       <h1 class="hero-headline">
-        <span style="display:block;font-size:clamp(64px,8vw,96px);font-weight:700;color:#ffffff;line-height:1.0;letter-spacing:-0.03em;margin-bottom:20px;">Stop building programmes.</span>
+        <span style="display:block;font-size:clamp(56px,6.2vw,84px);font-weight:700;color:#ffffff;line-height:1.0;letter-spacing:-0.03em;margin-bottom:20px;">Stop building programmes.</span>
         <span style="display:block;font-size:clamp(28px,3.5vw,42px);font-weight:400;color:rgba(255,255,255,0.75);line-height:1.2;letter-spacing:-0.01em;">Every session logged makes the next one <em>smarter.</em></span>
       </h1>
       <p class="hero-sub">Entrayn Intelligence is your co-pilot. You focus on the coaching. It takes care of the rest.</p>
@@ -521,144 +532,32 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       <p class="hero-note">Free to get started. No credit card required.</p>
     </div>
 
-    <!-- CAROUSEL -->
+    <!-- DEVICES: real screenshots from the demo account (5 Nov 2026). Coach on the laptop, athlete on the phone; they change together. -->
     <div class="hero-visual">
-      <div class="carousel-wrap">
-        <div class="carousel-track" id="carousel">
-
-          <!-- Slide 1: AI Insights -->
-          <div class="carousel-slide active">
-            <div class="ss-header">
-              <div class="ss-logo">
-                <span class="b1" style="height:4px"></span><span class="b2" style="height:7px"></span><span class="b3" style="height:11px"></span>
-              </div>
-              <div><div class="ss-title">James M. — Insights</div><div class="ss-sub">Strength · 3 days/wk</div></div>
-              <div style="margin-left:auto;font-size:9px;color:var(--green-mid);font-weight:500;">↻ Refresh</div>
-            </div>
-            <div class="ss-body">
-              <div class="mini-insight">
-                <div class="mini-insight-lbl">✦ AI Insight</div>
-                <div class="mini-insight-title">Low Adherence Despite Good Recovery Scores</div>
-                <div class="mini-bullet">Hit 1 of 3 sessions this week</div>
-                <div class="mini-bullet">Sleep & energy high — not a recovery issue</div>
-                <div class="mini-bullet">Check scheduling blockers this week</div>
-                <div class="mini-bullet">No PRs logged — consistency needed first</div>
-              </div>
-              <div class="mini-label" style="margin-top:2px;">Check-in Trends · 7 days</div>
-              <div class="mini-checkin">
-                <div class="mini-ci"><div class="mini-ci-n">4.0</div><div class="mini-ci-l">Soreness</div></div>
-                <div class="mini-ci"><div class="mini-ci-n">4.5</div><div class="mini-ci-l">Sleep</div></div>
-                <div class="mini-ci"><div class="mini-ci-n">4.5</div><div class="mini-ci-l">Energy</div></div>
-              </div>
-              <div style="background:white;border-radius:9px;padding:11px 13px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-                <div><div class="mini-label">Volume this week</div><div style="font-size:8px;color:var(--text-sec);margin-top:1px;">No prior week to compare</div></div>
-                <div style="font-size:17px;font-weight:700;color:var(--text);letter-spacing:-.02em;">7,490 kg</div>
-              </div>
-            </div>
+      <div class="devices" id="carousel">
+        <div class="laptop" aria-label="Coach view on a laptop">
+          <div class="laptop-bar"><span></span><span></span><span></span></div>
+          <div class="laptop-screen">
+          <img class="hero-shot active" src="shots/desk-today.webp" alt="The coach Today page: who needs attention, with a pain flag first" width="1440" height="900" decoding="async">
+          <img class="hero-shot" src="shots/desk-clients.webp" alt="The coach clients list: every athlete’s week, adherence, check-ins and flags" width="1440" height="900" loading="lazy" decoding="async">
+          <img class="hero-shot" src="shots/desk-athlete.webp" alt="An athlete page for the coach: the coaching briefing next to the messages" width="1440" height="900" loading="lazy" decoding="async">
+          <img class="hero-shot" src="shots/desk-calendar.webp" alt="The coach week view: strength and running sessions side by side" width="1440" height="900" loading="lazy" decoding="async">
           </div>
-
-          <!-- Slide 2: PT Dashboard -->
-          <div class="carousel-slide">
-            <div class="ss-header">
-              <div class="ss-logo">
-                <span class="b1" style="height:4px"></span><span class="b2" style="height:7px"></span><span class="b3" style="height:11px"></span>
-              </div>
-              <div><div class="ss-title">Entrayn</div><div class="ss-sub">Coach dashboard</div></div>
-            </div>
-            <div class="ss-body">
-              <div class="mini-stat-row">
-                <div class="mini-stat"><div class="mini-stat-n">6</div><div class="mini-stat-l">Clients</div></div>
-                <div class="mini-stat"><div class="mini-stat-n">6</div><div class="mini-stat-l">Active</div></div>
-                <div class="mini-stat"><div class="mini-stat-n" style="font-size:15px">84%</div><div class="mini-stat-l">Adherence</div></div>
-              </div>
-              <div class="mini-label">Client Roster</div>
-              <div class="mini-client">
-                <div class="mini-av" style="background:#085041">JM</div>
-                <div style="flex:1"><div style="font-size:10px;font-weight:600;color:var(--text)">James M. <span style="color:var(--green-mid);font-size:8px">● Active</span></div><div style="font-size:8px;color:var(--text-sec)">Strength · 3 days/wk · Wk 1 of 4</div><div class="mini-bar"><div class="mini-fill" style="width:33%"></div></div></div>
-              </div>
-              <div class="mini-client">
-                <div class="mini-av" style="background:#5b7fa6">SC</div>
-                <div style="flex:1"><div style="font-size:10px;font-weight:600;color:var(--text)">Sarah C. <span style="color:var(--green-mid);font-size:8px">● Active</span></div><div style="font-size:8px;color:var(--text-sec)">Weight loss · 4 days/wk · Wk 3 of 8</div><div class="mini-bar"><div class="mini-fill" style="width:67%"></div></div></div>
-              </div>
-              <div class="mini-client">
-                <div class="mini-av" style="background:#8a6b3f">TR</div>
-                <div style="flex:1"><div style="font-size:10px;font-weight:600;color:var(--text)">Tom R. <span style="color:var(--green-mid);font-size:8px">● Active</span></div><div style="font-size:8px;color:var(--text-sec)">Strength · 4 days/wk · Wk 2 of 6</div><div class="mini-bar"><div class="mini-fill" style="width:50%"></div></div></div>
-              </div>
-              <div class="mini-insight" style="margin-top:2px">
-                <div class="mini-insight-lbl">✦ AI Insight · James M.</div>
-                <div class="mini-insight-title" style="font-size:10px">Low adherence despite good recovery — check scheduling blockers</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 3: Client Progress -->
-          <div class="carousel-slide">
-            <div class="ss-header">
-              <div class="ss-logo">
-                <span class="b1" style="height:4px"></span><span class="b2" style="height:7px"></span><span class="b3" style="height:11px"></span>
-              </div>
-              <div><div class="ss-title">Entrayn</div><div class="ss-sub">Progress</div></div>
-            </div>
-            <div class="ss-body">
-              <div style="background:var(--green-dark);border-radius:12px;padding:16px;">
-                <div class="mini-label" style="color:rgba(255,255,255,.4);margin-bottom:5px;">Your Block</div>
-                <div style="font-size:26px;font-weight:700;color:white;line-height:1;letter-spacing:-.02em;margin-bottom:4px;">Week 1 <span style="font-size:14px;font-weight:400;color:rgba(255,255,255,.45)">of 4</span></div>
-                <div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:12px;">Strength · 3 days / week</div>
-                <div style="height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;margin-bottom:8px;"><div style="width:8%;height:100%;background:var(--green-mid);border-radius:2px;"></div></div>
-                <div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-size:9px;color:rgba(255,255,255,.35);">Block complete</div><div style="font-size:13px;font-weight:700;color:white;">8%</div></div>
-              </div>
-              <div style="background:white;border-radius:10px;padding:11px 13px;border:1px solid var(--border);text-align:center;cursor:pointer;"><div style="font-size:11px;font-weight:600;color:var(--green-dark);">Programme history →</div></div>
-              <div class="mini-label">Strength Progression</div>
-              <div style="background:white;border-radius:10px;padding:16px;border:1px solid var(--border);text-align:center;"><div style="font-size:20px;margin-bottom:6px;">📈</div><div style="font-size:10px;color:var(--text-sec);line-height:1.5;">Keep logging — your strength chart appears after week two.</div></div>
-              <div class="mini-label">Consistency</div>
-              <div style="background:white;border-radius:10px;padding:11px 13px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;"><div style="font-size:10px;font-weight:600;color:var(--text);">🔥 1 week streak</div><div style="font-size:9px;color:var(--green-mid);font-weight:500;">Keep going</div></div>
-            </div>
-          </div>
-
-          <!-- Slide 4: Session View -->
-          <div class="carousel-slide">
-            <div class="ss-header">
-              <div class="ss-logo">
-                <span class="b1" style="height:4px"></span><span class="b2" style="height:7px"></span><span class="b3" style="height:11px"></span>
-              </div>
-              <div><div class="ss-title">Good morning, James.</div><div class="ss-sub">Here is your programme.</div></div>
-            </div>
-            <div class="ss-body">
-              <div style="background:var(--green-bg);border-radius:8px;padding:9px 12px;border:1px solid rgba(29,158,117,.2);font-size:10px;font-weight:600;color:var(--green-dark);text-align:center;">Check-in done ✓ · tap to edit</div>
-              <div style="background:white;border-radius:10px;padding:10px 12px;border:1px solid var(--border);display:flex;align-items:center;gap:9px;"><div style="font-size:18px;">🔥</div><div><div style="font-size:10px;font-weight:600;color:var(--text);">1 week streak</div><div style="font-size:9px;color:var(--text-sec);">Nice — this week is in the bag.</div></div></div>
-              <div style="background:white;border-radius:10px;padding:12px;border:1px solid var(--border);">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px;">
-                  <div><div style="font-size:11px;font-weight:700;color:var(--text);">Day 1 — Full Body A</div><div style="font-size:9px;color:var(--text-sec);">Mon · Squat, horizontal push/pull</div></div>
-                  <div style="background:var(--green-bg);color:var(--green-dark);font-size:8px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap;">Done ✓</div>
-                </div>
-                <div style="display:flex;flex-wrap:wrap;gap:4px;">
-                  <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;font-size:8px;padding:2px 7px;color:var(--text-sec);">Barbell back squat</span>
-                  <span style="background:#e8e8f5;border-radius:20px;font-size:8px;padding:2px 7px;color:#4a4a7a;">BB bench + row</span>
-                  <span style="background:#e8e8f5;border-radius:20px;font-size:8px;padding:2px 7px;color:#4a4a7a;">Bulgarian split squat</span>
-                </div>
-              </div>
-              <div style="background:white;border-radius:10px;padding:12px;border:1px solid var(--border);">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px;">
-                  <div><div style="font-size:11px;font-weight:700;color:var(--text);">Day 2 — Full Body B</div><div style="font-size:9px;color:var(--text-sec);">Thu · Hinge, vertical push/pull</div></div>
-                  <div style="background:var(--bg);color:var(--text-sec);font-size:8px;font-weight:500;padding:2px 7px;border-radius:20px;border:1px solid var(--border);white-space:nowrap;">Not done</div>
-                </div>
-                <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
-                  <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;font-size:8px;padding:2px 7px;color:var(--text-sec);">Deadlift</span>
-                  <span style="background:#e8e8f5;border-radius:20px;font-size:8px;padding:2px 7px;color:#4a4a7a;">OHP + Pull-up</span>
-                </div>
-                <div style="background:var(--green-dark);border-radius:7px;padding:9px;text-align:center;"><span style="font-size:10px;font-weight:600;color:white;">▶ Start session</span></div>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /carousel-track -->
-
-        <div class="carousel-pills" style="margin-top:22px;">
-          <div class="carousel-pill active" onclick="goTo(0)"></div>
-          <div class="carousel-pill" onclick="goTo(1)"></div>
-          <div class="carousel-pill" onclick="goTo(2)"></div>
-          <div class="carousel-pill" onclick="goTo(3)"></div>
         </div>
+        <div class="phone" aria-label="Athlete view on a phone">
+          <div class="phone-screen">
+          <img class="hero-shot active" src="shots/phone-home.webp" alt="An athlete home screen: this week, block progress and a completed check-in" width="393" height="852" decoding="async">
+          <img class="hero-shot" src="shots/phone-logger.webp" alt="The workout logger: sets, weights and what the athlete lifted last time" width="393" height="852" loading="lazy" decoding="async">
+          <img class="hero-shot" src="shots/phone-progress.webp" alt="An athlete’s strength chart: back squat up 9 kg since October" width="393" height="852" loading="lazy" decoding="async">
+          <img class="hero-shot" src="shots/phone-week.webp" alt="An athlete’s week: done and upcoming sessions" width="393" height="852" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-pills">
+        <button class="carousel-pill active" onclick="goTo(0)" aria-label="Show screen 1"></button>
+        <button class="carousel-pill" onclick="goTo(1)" aria-label="Show screen 2"></button>
+        <button class="carousel-pill" onclick="goTo(2)" aria-label="Show screen 3"></button>
+        <button class="carousel-pill" onclick="goTo(3)" aria-label="Show screen 4"></button>
       </div>
     </div>
 
@@ -1056,23 +955,19 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 </footer>
 
 <script>
-// ── CAROUSEL ──
+// ── HERO DEVICES CAROUSEL ── laptop and phone change together
 let cur = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const pills  = document.querySelectorAll('.carousel-pill');
+const lapShots = document.querySelectorAll('.laptop .hero-shot');
+const phShots  = document.querySelectorAll('.phone .hero-shot');
+const pills    = document.querySelectorAll('.carousel-pill');
 let timer = null, dragging = false, dragX = 0;
-
 function goTo(n) {
-  slides[cur].classList.remove('active');
-  pills[cur].classList.remove('active');
-  cur = (n + slides.length) % slides.length;
-  slides[cur].classList.add('active');
-  pills[cur].classList.add('active');
+  cur = (n + pills.length) % pills.length;
+  [lapShots, phShots, pills].forEach(list => list.forEach((el, i) => el.classList.toggle('active', i === cur)));
 }
 function next() { goTo(cur + 1); }
-function startAuto() { stopAuto(); timer = setInterval(next, 4200); }
+function startAuto() { stopAuto(); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(next, 5000); }
 function stopAuto()  { clearInterval(timer); timer = null; }
-
 const track = document.getElementById('carousel');
 track.addEventListener('mousedown',  e => { dragging=true; dragX=e.clientX; stopAuto(); });
 track.addEventListener('touchstart', e => { dragging=true; dragX=e.touches[0].clientX; stopAuto(); }, {passive:true});
