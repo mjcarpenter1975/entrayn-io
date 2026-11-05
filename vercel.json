@@ -6,6 +6,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "help/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "brand/*",
       "use": "@vercel/static"
     },
@@ -38,6 +42,18 @@
     {
       "src": "/cookies",
       "dest": "/cookies.html"
+    },
+    {
+      "src": "/help/?",
+      "dest": "/help/index.html"
+    },
+    {
+      "src": "/help/([^/.]+)/?",
+      "dest": "/help/$1/index.html"
+    },
+    {
+      "src": "/help/([^/.]+)/([^/.]+)/?",
+      "dest": "/help/$1/$2.html"
     }
   ]
 }
