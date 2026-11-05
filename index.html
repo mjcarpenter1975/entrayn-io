@@ -120,7 +120,7 @@ nav.nav-scrolled .nav-toggle span { background:#085041; }
   pointer-events:none;
 }
 .hero-inner {
-  max-width:1320px; margin:0 auto; width:100%;
+  max-width:clamp(1320px,92vw,2000px); margin:0 auto; width:100%;
   display:grid; grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr); gap:56px; align-items:center;
 }
 .hero-eyebrow {
@@ -138,8 +138,8 @@ nav.nav-scrolled .nav-toggle span { background:#085041; }
 }
 .hero-headline em { font-style:italic; color:var(--green-light); }
 .hero-sub {
-  font-size:18px; line-height:1.7; color:rgba(255,255,255,.62);
-  margin-bottom:48px; max-width:460px; font-weight:300;
+  font-size:clamp(18px,1.25vw,26px); line-height:1.7; color:rgba(255,255,255,.62);
+  margin-bottom:48px; max-width:32em; font-weight:300;
 }
 .hero-form { display:flex; max-width:420px; }
 .hero-form input {
@@ -160,20 +160,20 @@ nav.nav-scrolled .nav-toggle span { background:#085041; }
 .hero-note { margin-top:13px; font-size:13px; color:rgba(255,255,255,.3); }
 
 /* ─── HERO DEVICES (real screenshots) ─── */
-.hero-visual { display:flex; flex-direction:column; align-items:center; gap:28px; }
-.devices { position:relative; width:100%; max-width:660px; padding:0 70px 88px 0; cursor:grab; user-select:none; }
+.hero-visual { --dw:clamp(660px,46vw,1040px); display:flex; flex-direction:column; align-items:center; gap:28px; }
+.devices { position:relative; width:100%; --dw:clamp(660px,46vw,1040px); max-width:var(--dw); padding:0 calc(var(--dw)*0.106) calc(var(--dw)*0.133) 0; cursor:grab; user-select:none; }
 .devices:active { cursor:grabbing; }
 .laptop { background:#0d1f1a; border-radius:14px; padding:0; overflow:hidden;
   box-shadow:0 50px 90px rgba(0,0,0,.55),0 20px 40px rgba(0,0,0,.28),0 0 0 1px rgba(255,255,255,.08); }
 .laptop-bar { height:26px; display:flex; align-items:center; gap:6px; padding:0 12px; background:#16302a; }
 .laptop-bar span { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.22); }
 .laptop-screen { position:relative; aspect-ratio:1440/900; background:var(--bg); }
-.phone { position:absolute; right:calc(70px - 15.5%); bottom:0; width:31%; min-width:150px; background:#0d1f1a; border-radius:30px; padding:7px;
+.phone { position:absolute; right:calc(var(--dw)*0.106 - 15.5%); bottom:0; width:31%; min-width:150px; background:#0d1f1a; border-radius:30px; padding:7px;
   box-shadow:0 40px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.1); }
 .phone-screen { position:relative; aspect-ratio:393/852; border-radius:24px; overflow:hidden; background:var(--bg); }
 .hero-shot { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; opacity:0; transition:opacity .45s ease; }
 .hero-shot.active { opacity:1; }
-.carousel-pills { display:flex; gap:8px; align-items:center; justify-content:center; width:100%; padding-right:70px; }
+.carousel-pills { display:flex; gap:8px; align-items:center; justify-content:center; width:100%; max-width:var(--dw,660px); padding-right:calc(var(--dw,660px)*0.106); }
 .carousel-pill { height:4px; border:0; padding:0; border-radius:2px; background:rgba(255,255,255,.2); cursor:pointer; transition:all .3s; flex:1; max-width:48px; }
 .carousel-pill.active { background:var(--green-light); max-width:72px; }
 .carousel-pill:hover:not(.active) { background:rgba(255,255,255,.4); }
@@ -443,6 +443,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   #hero { padding:100px 24px 56px; }
   .hero-inner { grid-template-columns:1fr; gap:0; }
   .hero-visual { margin-top:40px; }
+  .hero-visual { --dw:260px; }
   .devices { padding:0; max-width:260px; margin:0 auto; }
   .laptop { display:none; }
   .phone { position:relative; width:100%; }
@@ -521,8 +522,8 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   <div class="hero-inner">
     <div>
       <h1 class="hero-headline">
-        <span style="display:block;font-size:clamp(56px,6.2vw,84px);font-weight:700;color:#ffffff;line-height:1.0;letter-spacing:-0.03em;margin-bottom:20px;">Stop building programmes.</span>
-        <span style="display:block;font-size:clamp(28px,3.5vw,42px);font-weight:400;color:rgba(255,255,255,0.75);line-height:1.2;letter-spacing:-0.01em;">Every session logged makes the next one <em>smarter.</em></span>
+        <span style="display:block;font-size:clamp(56px,6.2vw,120px);font-weight:700;color:#ffffff;line-height:1.0;letter-spacing:-0.03em;margin-bottom:20px;">Stop building programmes.</span>
+        <span style="display:block;font-size:clamp(28px,2.9vw,58px);font-weight:400;color:rgba(255,255,255,0.75);line-height:1.2;letter-spacing:-0.01em;">Every session logged makes the next one <em>smarter.</em></span>
       </h1>
       <p class="hero-sub">Entrayn Intelligence is your co-pilot. You focus on the coaching. It takes care of the rest.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
