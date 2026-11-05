@@ -10,6 +10,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "shots/*",
+      "use": "@vercel/static"
+    },
+    {
       "src": "*.svg",
       "use": "@vercel/static"
     },
