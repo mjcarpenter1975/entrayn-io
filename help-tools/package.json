@@ -2,6 +2,11 @@
   "name": "entrayn-help-tools",
   "private": true,
   "type": "module",
-  "scripts": { "help": "node build.mjs" },
-  "dependencies": { "marked": "14.1.4" }
+  "scripts": {
+    "help": "node build.mjs",
+    "shots": "node shots.mjs"
+  },
+  "dependencies": {
+    "marked": "14.1.4"
+  }
 }

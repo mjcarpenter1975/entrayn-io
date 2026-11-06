@@ -1,0 +1,161 @@
+{
+  "base": "https://www.entrayn.app",
+  "sizes": {
+    "phone": {
+      "width": 393,
+      "height": 852,
+      "mobile": true
+    },
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "mobile": false
+    }
+  },
+  "note": "Each shot: id (image name), as (demo login first name, or coach), size, path, steps, brand (green = Entrayn green; coach = the demo coach's own branding), writes (true only if the screen must save something), full (whole page), clip (keep only the top part, in pixels), articles (which help articles use it).",
+  "shots": [
+    {
+      "id": "coach-today-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/dashboard",
+      "steps": [
+        {
+          "waitText": "Needs you today"
+        }
+      ],
+      "articles": [
+        "coaches/how-do-i-use-today"
+      ],
+      "clip": {
+        "height": 800
+      }
+    },
+    {
+      "id": "coach-home-phone",
+      "as": "coach",
+      "size": "phone",
+      "path": "/dashboard",
+      "steps": [
+        {
+          "wait": 1500
+        }
+      ],
+      "articles": [
+        "coaches/how-do-i-use-today"
+      ]
+    },
+    {
+      "id": "coach-client-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/clients/d3e00000-0000-4000-8000-000000000201",
+      "steps": [
+        {
+          "waitText": "Coach briefing"
+        },
+        {
+          "wait": 3000
+        }
+      ],
+      "articles": [
+        "coaches/how-do-i-read-the-coaching-briefing"
+      ],
+      "note": "Sophie Turner. Her demo id stays the same after the nightly rebuild."
+    },
+    {
+      "id": "coach-branding-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/settings#set-branding",
+      "steps": [
+        {
+          "wait": 2000
+        },
+        {
+          "click": "[aria-label=\"Violet\"]"
+        },
+        {
+          "wait": 500
+        }
+      ],
+      "articles": [
+        "coaches/how-do-i-add-my-brand"
+      ],
+      "note": "Picks Violet to show the preview change. Nothing is saved."
+    },
+    {
+      "id": "athlete-home-phone",
+      "as": "sophie",
+      "size": "phone",
+      "path": "/client",
+      "steps": [
+        {
+          "wait": 2000
+        }
+      ],
+      "articles": [
+        "athletes/how-do-i-find-my-way-around"
+      ]
+    },
+    {
+      "id": "athlete-progress-phone",
+      "as": "sophie",
+      "size": "phone",
+      "path": "/client/progress",
+      "steps": [
+        {
+          "wait": 2500
+        }
+      ],
+      "articles": [
+        "athletes/what-does-progress-show-me"
+      ]
+    },
+    {
+      "id": "athlete-messages-phone",
+      "as": "sophie",
+      "size": "phone",
+      "path": "/client/messages",
+      "steps": [
+        {
+          "wait": 2000
+        }
+      ],
+      "articles": [
+        "athletes/how-do-i-message-my-coach"
+      ]
+    },
+    {
+      "id": "athlete-you-phone",
+      "as": "sophie",
+      "size": "phone",
+      "path": "/client/profile",
+      "steps": [
+        {
+          "wait": 2000
+        }
+      ],
+      "articles": [
+        "athletes/how-do-i-download-my-data"
+      ]
+    },
+    {
+      "id": "athlete-logger-phone",
+      "as": "sophie",
+      "size": "phone",
+      "path": "/client",
+      "steps": [
+        {
+          "click": "text=/^Start/"
+        },
+        {
+          "wait": 4000
+        }
+      ],
+      "articles": [
+        "athletes/how-do-i-log-a-session"
+      ]
+    }
+  ]
+}
