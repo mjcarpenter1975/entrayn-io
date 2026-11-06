@@ -2,7 +2,7 @@
 title: Why are my days or times wrong?
 summary: Entrayn uses your phone's time zone. Here's how to check it.
 group: Time zones
-order: 10
+order: 50
 status: live
 checked: 2026-11-06
 keywords: time zone timezone wrong day date travel

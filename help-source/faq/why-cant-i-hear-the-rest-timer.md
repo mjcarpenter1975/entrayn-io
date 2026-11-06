@@ -2,7 +2,7 @@
 title: Why can't I hear the rest timer?
 summary: Check mute, volume and silent mode.
 group: Training
-order: 10
+order: 60
 status: live
 checked: 2026-11-06
 keywords: rest timer sound no sound quiet mute volume silent

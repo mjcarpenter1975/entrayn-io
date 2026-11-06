@@ -2,7 +2,7 @@
 title: Why isn't Garmin syncing?
 summary: Checks to try when your Garmin data doesn't show up.
 group: Connected apps
-order: 10
+order: 70
 status: unlisted
 checked: 2026-11-06
 keywords: garmin sync not syncing missing data watch

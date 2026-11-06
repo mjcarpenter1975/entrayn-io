@@ -2,7 +2,7 @@
 title: Why am I not getting message emails?
 summary: When Entrayn emails you about messages, and what to check.
 group: Notifications
-order: 10
+order: 40
 status: live
 checked: 2026-11-06
 keywords: email notifications messages alerts not receiving junk

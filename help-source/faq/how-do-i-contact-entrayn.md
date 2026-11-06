@@ -2,7 +2,7 @@
 title: How do I contact Entrayn?
 summary: Email us, and include a few details so we can help quickly.
 group: Contact
-order: 10
+order: 90
 status: live
 checked: 2026-11-06
 keywords: contact support help email

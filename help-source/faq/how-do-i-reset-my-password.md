@@ -2,7 +2,7 @@
 title: How do I reset my password?
 summary: Get a reset link by email and choose a new password.
 group: Signing in
-order: 10
+order: 30
 status: live
 checked: 2026-11-06
 keywords: password forgot reset sign in login
