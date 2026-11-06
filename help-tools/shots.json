@@ -118,7 +118,7 @@
         }
       ],
       "articles": [
-        "athletes/how-do-i-download-my-data"
+        "athletes/how-is-my-data-kept-private (legal hold)"
       ]
     },
     {
@@ -135,7 +135,8 @@
         }
       ],
       "articles": [
-        "athletes/how-do-i-log-a-session"
+        "athletes/how-do-i-log-a-session",
+        "athletes/where-are-my-warm-up-and-cool-down"
       ]
     },
     {
@@ -279,6 +280,68 @@
       },
       "articles": [
         "coaches/how-do-i-train-myself-as-a-coach"
+      ]
+    },
+    {
+      "id": "athlete-checkin-phone",
+      "as": "sophie",
+      "size": "phone",
+      "path": "/client",
+      "steps": [
+        {
+          "wait": 2500
+        },
+        {
+          "click": "button:text-is(\"Edit\")"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "articles": [
+        "athletes/how-do-i-do-my-daily-check-in"
+      ],
+      "note": "Opens today\u2019s check-in to show it. Nothing is saved."
+    },
+    {
+      "id": "athlete-swap-phone",
+      "as": "sophie",
+      "size": "phone",
+      "path": "/client",
+      "steps": [
+        {
+          "click": "text=/^Start/"
+        },
+        {
+          "wait": 4000
+        },
+        {
+          "click": "button[aria-label^=\"Swap \"]"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "articles": [
+        "athletes/how-do-i-swap-an-exercise"
+      ]
+    },
+    {
+      "id": "athlete-share-week-phone",
+      "as": "sophie",
+      "size": "phone",
+      "path": "/client/progress",
+      "steps": [
+        {
+          "waitText": "Share my week",
+          "timeout": 20000
+        }
+      ],
+      "card": {
+        "text": "Share it as a story \u2014 no name or health details on it."
+      },
+      "articles": [
+        "athletes/how-do-i-share-my-week"
       ]
     }
   ]
