@@ -360,6 +360,7 @@ section { padding:112px 48px; }
 .pc-free-btn:hover { border-color:var(--green-light); color:var(--text); }
 .pc-connected { border-color:var(--green-light); background:var(--green-bg); }
 .pricing-note { font-size:13px; color:var(--text-sec); text-align:center; margin-top:8px; }
+.pricing-grid.two { grid-template-columns:repeat(2,1fr); max-width:760px; margin-left:auto; margin-right:auto; }
 
 /* ─── FOUNDER ─── */
 #founder { background:var(--white); border-top:1px solid var(--border); }
@@ -466,7 +467,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
   .pt-tiers { flex-wrap:wrap; gap:18px 28px; }
   .clients-grid { grid-template-columns:1fr; gap:20px; }
   .client-card { padding:28px 24px; }
-  .pricing-grid { grid-template-columns:1fr; gap:20px; }
+  .pricing-grid, .pricing-grid.two { grid-template-columns:1fr; gap:20px; }
 
   /* ── FOUNDER → single column ── */
   .founder-grid { grid-template-columns:1fr; gap:28px; }
@@ -659,16 +660,16 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
             <p class="feature-body">See every client at a glance. Who's on track, who needs a check-in, who hit a PR this week — without digging through messages or memory.</p>
           </div>
           <div class="feature-item">
-            <div class="feature-title">Flat-rate. Unlimited clients.</div>
-            <p class="feature-body">One monthly fee. Add as many clients as you like. No per-seat fees, no growth penalty. The more clients you take on, the better value Entrayn gets.</p>
+            <div class="feature-title">Simple plans. No per-client fees.</div>
+            <p class="feature-body">One monthly price per plan, in Australian dollars. Up to 20 clients on Base, 50 on Pro, or no limit on Pro Unlimited. No per-client fees and no paid add-ons.</p>
           </div>
         </div>
         <div class="pt-callout">
-          <div class="pt-callout-lbl">Coaching plans — flat rate</div>
+          <div class="pt-callout-lbl">Coaching plans · AUD</div>
           <div class="pt-tiers">
             <div><div class="pt-tier-name">Base</div><div class="pt-tier-price">$49<span>/mo</span></div><div class="pt-tier-note">Up to 20 clients</div></div>
-            <div><div class="pt-tier-name">Pro</div><div class="pt-tier-price">$69<span>/mo</span></div><div class="pt-tier-note">Unlimited clients</div></div>
-            <div><div class="pt-tier-name">Studio</div><div class="pt-tier-price">$149<span>/mo</span></div><div class="pt-tier-note">Multiple trainers</div></div>
+            <div><div class="pt-tier-name">Pro</div><div class="pt-tier-price">$79<span>/mo</span></div><div class="pt-tier-note">Up to 50 clients</div></div>
+            <div><div class="pt-tier-name">Pro Unlimited</div><div class="pt-tier-price">$99<span>/mo</span></div><div class="pt-tier-note">No client limit</div></div>
           </div>
         </div>
       </div>
@@ -731,8 +732,8 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       <p class="eyebrow">For gyms & studios</p>
       <h2 class="section-headline" style="margin-bottom:32px;">One platform. Your whole team. Your brand.</h2>
       <div style="width:40px;height:2px;background:var(--green-light);margin-bottom:36px;"></div>
-      <p class="studios-body"><strong>One Studio subscription covers every trainer in your team.</strong> Each coach gets their own dashboard and client roster. Your clients get a premium app experience. You get visibility across the whole studio — and optionally, your own branding on the platform. White-label ready.</p>
-      <a href="mailto:hello@entrayn.app" class="text-link">Talk to us about Studio access →</a>
+      <p class="studios-body"><strong>Each trainer in your team gets their own Entrayn coaching plan</strong>, with their own dashboard and client roster, and your logo and colour in their clients&rsquo; app on Pro. Your clients use the app free. A single team plan with a studio-wide view is on the way. In the meantime, talk to us about setting up your trainers.</p>
+      <a href="mailto:hello@entrayn.app" class="text-link">Running a gym with several trainers? Talk to us →</a>
     </div>
   </div>
 </section>
@@ -741,14 +742,14 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
 <section id="pricing">
   <div class="container">
     <p class="eyebrow">Pricing</p>
-    <h2 class="section-headline">Simple, flat-rate pricing.</h2>
+    <h2 class="section-headline">Simple pricing, in Australian dollars.</h2>
 
     <div class="pricing-tabs">
       <button class="ptab active" onclick="switchTab('pt',this)">For Coaches</button>
       <button class="ptab" onclick="switchTab('client',this)">For Clients</button>
     </div>
 
-    <!-- PT Panel -->
+    <!-- PT Panel (prices from entrayn.app src/lib/planPrices.ts — keep them matching; 6 Nov 2026) -->
     <div class="pricing-panel active" id="panel-pt">
       <div class="pricing-grid">
         <div class="pc">
@@ -760,102 +761,77 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
             <li>Up to 20 clients</li>
             <li>AI programme builder</li>
             <li>Client app included</li>
-            <li>Session logging & check-ins</li>
+            <li>Session logging &amp; check-ins</li>
             <li>Progress tracking</li>
+            <li>Email support</li>
             <li class="off">AI insights per client</li>
-            <li class="off">Priority support</li>
+            <li class="off">Your logo &amp; brand colour</li>
           </ul>
-          <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Get started</a>
+          <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Start free trial</a>
         </div>
         <div class="pc featured">
           <div class="pc-badge">Most popular</div>
           <div class="pc-name">Pro</div>
-          <div class="pc-price" id="pp-pro">$69</div>
+          <div class="pc-price" id="pp-pro">$79</div>
           <div class="pc-period">per month</div>
           <div class="pc-div"></div>
           <ul class="pc-features">
-            <li>Unlimited clients</li>
-            <li>AI programme builder</li>
-            <li>Client app included</li>
-            <li>Session logging & check-ins</li>
-            <li>Progress tracking</li>
+            <li>Up to 50 clients</li>
+            <li>Everything in Base</li>
             <li>AI insights per client</li>
-            <li>Your own logo &amp; colour (white-label)</li>
-            <li>Priority support</li>
+            <li>Your logo &amp; brand colour in your athletes&rsquo; app and invites</li>
+            <li>Email support</li>
           </ul>
-          <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Get started</a>
+          <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Start free trial</a>
         </div>
         <div class="pc">
-          <div class="pc-name">Studio</div>
-          <div class="pc-price" id="pp-stu">$149</div>
+          <div class="pc-name">Pro Unlimited</div>
+          <div class="pc-price" id="pp-unl">$99</div>
           <div class="pc-period">per month</div>
           <div class="pc-div"></div>
           <ul class="pc-features">
-            <li>Multiple trainers</li>
-            <li>Unlimited clients</li>
-            <li>AI programme builder</li>
-            <li>Client app included</li>
-            <li>Studio-level dashboard</li>
-            <li>AI insights per client</li>
-            <li>White-label ready</li>
+            <li>No client limit</li>
+            <li>Everything in Pro</li>
+            <li>Email support</li>
           </ul>
-          <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Get started</a>
+          <a href="https://entrayn.app/signup?role=pt" class="pc-btn">Start free trial</a>
         </div>
       </div>
-      <p class="pricing-note">All coaching plans include the client app at no cost to your clients. No per-seat fees. No surprises.</p>
+      <p class="pricing-note">Prices in Australian dollars. 30-day free trial, no card needed. Pay yearly and get 2 months free. Your clients&rsquo; app is included at no cost to them.</p>
+      <p class="pricing-note">Running a gym or studio with several trainers? <a href="mailto:hello@entrayn.app?subject=Gym%20or%20studio" style="color:var(--green-dark);text-decoration:underline">Talk to us</a>.</p>
     </div>
 
     <!-- Client Panel -->
     <div class="pricing-panel" id="panel-client">
-      <div class="pricing-grid">
-        <div class="pc">
-          <div class="pc-name">Free</div>
-          <div class="pc-price">$0</div>
-          <div class="pc-period">forever</div>
-          <div class="pc-div"></div>
-          <ul class="pc-features">
-            <li>Personalised training programme</li>
-            <li>Session logging</li>
-            <li>Basic progress tracking</li>
-            <li class="off">Daily check-ins & wellbeing</li>
-            <li class="off">AI-generated insights</li>
-            <li class="off">Health data integration</li>
-          </ul>
-          <a href="https://entrayn.app/signup?role=client" class="pc-btn pc-free-btn">Get started free</a>
-        </div>
-        <div class="pc featured">
-          <div class="pc-badge">Full experience</div>
-          <div class="pc-name">Premium</div>
-          <div class="pc-price" id="pp-prem">$9.99</div>
-          <div class="pc-period">per month</div>
-          <div class="pc-div"></div>
-          <ul class="pc-features">
-            <li>Personalised training programme</li>
-            <li>Session logging</li>
-            <li>Full progress tracking</li>
-            <li>Daily check-ins & wellbeing</li>
-            <li>AI-generated insights</li>
-            <li>Health data integration</li>
-          </ul>
-          <a href="https://entrayn.app/signup?role=client" class="pc-btn">Get started</a>
-        </div>
+      <div class="pricing-grid two">
         <div class="pc pc-connected">
           <div class="pc-name" style="color:var(--green-dark)">Connected to a coach</div>
           <div class="pc-price" style="color:var(--green-dark)">Free</div>
-          <div class="pc-period">included with your trainer</div>
+          <div class="pc-period">included with your coach&rsquo;s plan</div>
           <div class="pc-div" style="background:rgba(8,80,65,.12)"></div>
           <ul class="pc-features">
-            <li style="color:var(--text)">Your trainer's programme, live</li>
+            <li style="color:var(--text)">Your coach&rsquo;s programme, live</li>
             <li style="color:var(--text)">Session logging</li>
-            <li style="color:var(--text)">Full progress tracking</li>
-            <li style="color:var(--text)">Daily check-ins & wellbeing</li>
-            <li style="color:var(--text)">AI insights (shared with coach)</li>
-            <li style="color:var(--text)">Health data integration</li>
+            <li style="color:var(--text)">Progress tracking</li>
+            <li style="color:var(--text)">Daily check-ins</li>
+            <li style="color:var(--text)">Messages with your coach</li>
           </ul>
-          <div style="padding-top:8px;font-size:13px;color:var(--green-dark);font-weight:500;text-align:center;margin-top:auto;">Ask your trainer about Entrayn</div>
+          <div style="padding-top:8px;font-size:13px;color:var(--green-dark);font-weight:500;text-align:center;margin-top:auto;">Ask your coach about Entrayn</div>
+        </div>
+        <div class="pc">
+          <div class="pc-name">Training on your own</div>
+          <div class="pc-price" style="font-size:32px">Coming soon</div>
+          <div class="pc-period">for people without a coach</div>
+          <div class="pc-div"></div>
+          <ul class="pc-features">
+            <li>Build your own programme, or let Entrayn build one</li>
+            <li>Session logging and progress</li>
+            <li>Check-ins and safety prompts</li>
+          </ul>
+          <a href="mailto:hello@entrayn.app?subject=Training%20on%20my%20own" class="pc-btn pc-free-btn">Tell me when it opens</a>
         </div>
       </div>
-      <p class="pricing-note">Clients connected to any coach on Entrayn get full premium access — no payment required.</p>
+      <p class="pricing-note">Anyone connected to a coach on Entrayn uses the app free.</p>
     </div>
   </div>
 </section>
@@ -905,7 +881,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="faq(this)">Is Entrayn free for my clients?<span class="faq-icon">+</span></div>
-        <div class="faq-a">Yes. Clients connected to a coach on Entrayn get the full premium client app at no cost to them — it's included in your coaching subscription. Solo clients can use a free tier, or upgrade to premium for $9.99/month.</div>
+        <div class="faq-a">Yes. Clients connected to a coach on Entrayn use the app at no cost to them — it's included in your coaching plan. A version for people training without a coach is coming soon.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="faq(this)">What happens when I join the waitlist?<span class="faq-icon">+</span></div>
@@ -917,7 +893,7 @@ footer { background:#052e20; padding:44px 48px; display:flex; justify-content:sp
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="faq(this)">What makes Entrayn different from Everfit or TrueCoach?<span class="faq-icon">+</span></div>
-        <div class="faq-a">Most coaching platforms charge per client, so the more you grow the more you pay. Entrayn is flat-rate — unlimited clients, one price. But the deeper difference is the data flywheel: Entrayn gets more valuable the longer a client trains on it. Their accumulated session history, check-in data, and progress trends make every subsequent programme smarter. No other platform does this.</div>
+        <div class="faq-a">Price, for a start: Entrayn costs a fraction of the big platforms, in Australian dollars, with no per-client fees or paid add-ons. But the deeper difference is the data flywheel: Entrayn gets more valuable the longer a client trains on it. Their accumulated session history, check-in data, and progress trends make every subsequent programme smarter. No other platform does this.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="faq(this)">Is my data secure?<span class="faq-icon">+</span></div>
