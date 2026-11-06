@@ -30,4 +30,4 @@ Tap **Disconnect** under Garmin, then **Disconnect and delete**. Entrayn stops r
 ## Good to know
 
 - Data arrives from the day you connect. Tap **Fetch last 7 days** to fill in recent days.
-- Not syncing? Open the Garmin Connect app and let your watch sync, then check again.
+- Not syncing? See [Why isn't Garmin syncing?](/help/faq/why-isnt-garmin-syncing)

@@ -25,4 +25,4 @@ Tap **Disconnect** under Withings, then **Disconnect and delete**. Entrayn stops
 
 ## Good to know
 
-Weigh-ins Withings isn't sure are yours, and numbers you type into the Withings app, aren't sent to Entrayn.
+Weigh-ins Withings isn't sure are yours, and numbers you type into the Withings app, aren't sent to Entrayn. See [Why isn't my Withings weigh-in showing?](/help/faq/why-isnt-my-withings-weigh-in-showing)

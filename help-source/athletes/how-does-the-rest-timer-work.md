@@ -20,4 +20,4 @@ Tap the mute button in the session to mute the voice and the tones. It stays mut
 
 - The timer only counts down on screen. The sounds carry the last ten seconds.
 - If your phone was locked during the countdown, missed sounds aren't played late.
-- Can't hear it? Check you haven't muted it, and that your phone's volume is up.
+- Can't hear it? See [Why can't I hear the rest timer?](/help/faq/why-cant-i-hear-the-rest-timer)
