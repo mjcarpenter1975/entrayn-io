@@ -12,7 +12,7 @@
       "mobile": false
     }
   },
-  "note": "Each shot: id (image name), as (demo login first name, or coach), size, path, steps, brand (green = Entrayn green; coach = the demo coach's own branding), writes (true only if the screen must save something), full (whole page), clip (keep only the top part, in pixels), articles (which help articles use it).",
+  "note": "Each shot: id (image name), as (demo login first name, or coach), size, path, steps, brand (green = Entrayn green; coach = the demo coach's own branding), writes (true only if the screen must save something), full (whole page), tall (a taller window, in pixels, for screens that scroll inside the app), articles (which help articles use it). card (just one card: {\"text\": ...} or {\"css\": ...}). Steps: click, clickIf (only if it is there), waitText (with optional timeout), wait.",
   "shots": [
     {
       "id": "coach-today-desktop",
@@ -27,9 +27,8 @@
       "articles": [
         "coaches/how-do-i-use-today"
       ],
-      "clip": {
-        "height": 800
-      }
+      "note": "Tall enough to show the New check-ins list.",
+      "tall": 1240
     },
     {
       "id": "coach-home-phone",
@@ -44,24 +43,6 @@
       "articles": [
         "coaches/how-do-i-use-today"
       ]
-    },
-    {
-      "id": "coach-client-desktop",
-      "as": "coach",
-      "size": "desktop",
-      "path": "/clients/d3e00000-0000-4000-8000-000000000201",
-      "steps": [
-        {
-          "waitText": "Coach briefing"
-        },
-        {
-          "wait": 3000
-        }
-      ],
-      "articles": [
-        "coaches/how-do-i-read-the-coaching-briefing"
-      ],
-      "note": "Sophie Turner. Her demo id stays the same after the nightly rebuild."
     },
     {
       "id": "coach-branding-desktop",
@@ -155,6 +136,149 @@
       ],
       "articles": [
         "athletes/how-do-i-log-a-session"
+      ]
+    },
+    {
+      "id": "coach-briefing-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/clients/d3e00000-0000-4000-8000-000000000207",
+      "writes": true,
+      "note": "Grace Walker. Saves one AI briefing on the demo, cleared nightly.",
+      "steps": [
+        {
+          "wait": 3000
+        },
+        {
+          "clickIf": "button:has-text(\"Generate\")"
+        },
+        {
+          "waitText": "Was this briefing useful?",
+          "timeout": 90000
+        },
+        {
+          "clickIf": "text=Why this was suggested"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "card": {
+        "text": "Was this briefing useful?"
+      },
+      "articles": [
+        "coaches/how-do-i-read-the-coaching-briefing"
+      ]
+    },
+    {
+      "id": "coach-session-review-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/clients/d3e00000-0000-4000-8000-000000000201",
+      "note": "Sophie Turner: her first finished session this week, opened from This week.",
+      "steps": [
+        {
+          "waitText": "Coach briefing"
+        },
+        {
+          "click": "text=/^Done \u00b7/"
+        },
+        {
+          "waitText": "met minimum reps",
+          "timeout": 20000
+        },
+        {
+          "wait": 2000
+        }
+      ],
+      "articles": [
+        "coaches/how-do-i-review-a-finished-session"
+      ]
+    },
+    {
+      "id": "coach-messages-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/messages",
+      "steps": [
+        {
+          "wait": 3000
+        }
+      ],
+      "articles": [
+        "coaches/how-do-i-message-my-clients"
+      ]
+    },
+    {
+      "id": "coach-pain-flag-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/clients/d3e00000-0000-4000-8000-000000000209",
+      "note": "Chloe Martin: the red box only.",
+      "steps": [
+        {
+          "waitText": "Mark reviewed"
+        }
+      ],
+      "card": {
+        "text": "Mark reviewed"
+      },
+      "articles": [
+        "coaches/what-do-i-do-about-a-pain-flag"
+      ]
+    },
+    {
+      "id": "coach-away-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/settings",
+      "steps": [
+        {
+          "waitText": "First day away"
+        }
+      ],
+      "card": {
+        "text": "First day away"
+      },
+      "articles": [
+        "coaches/how-do-i-set-an-away-notice"
+      ]
+    },
+    {
+      "id": "coach-data-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/settings",
+      "steps": [
+        {
+          "waitText": "Download my data"
+        }
+      ],
+      "card": {
+        "css": "#set-data + div"
+      },
+      "articles": [
+        "coaches/how-do-i-download-my-data"
+      ]
+    },
+    {
+      "id": "coach-own-training-desktop",
+      "as": "coach",
+      "size": "desktop",
+      "path": "/settings",
+      "steps": [
+        {
+          "waitText": "Your own training"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "card": {
+        "css": "#set-own + *"
+      },
+      "articles": [
+        "coaches/how-do-i-train-myself-as-a-coach"
       ]
     }
   ]

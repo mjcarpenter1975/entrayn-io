@@ -7,6 +7,7 @@
 // Safety rules, all enforced here:
 //  - Only @demo.entrayn.app logins. Ruby (rehab) is never used.
 //  - Anything that would save data is blocked, unless the shot says "writes": true.
+//  - Screens showing Run (Running tab, + New run, run plans) are left out until Run launches.
 //  - The page fails if it shows an email address outside the demo domain, or the word "rehab".
 //  - Athlete screens show Entrayn green unless the shot says "brand": "coach". Only this
 //    browser's copy of the branding reply is changed; nothing in the app or data changes.
@@ -63,15 +64,15 @@ async function askPassword() {
 const password = await askPassword()
 const emailFor = who => `${who === 'coach' ? 'coach' : who}@${DOMAIN}`
 
-const browser = await chromium.launch()
+const browser = await chromium.launch({ args: ['--lang=en-AU'], env: { ...process.env, LANG: 'en_AU.UTF-8', LANGUAGE: 'en_AU' } }) // Australian date formats
 const sessions = new Map() // login kept in memory only, per account and size
 const results = [], problems = []
 mkdirSync(out, { recursive: true })
 
-async function newContext(size, state) {
+async function newContext(size, state, tall) {
   const v = cfg.sizes[size]
   return browser.newContext({
-    viewport: { width: v.width, height: v.height }, deviceScaleFactor: 2, isMobile: v.mobile, hasTouch: v.mobile,
+    viewport: { width: v.width, height: tall || v.height }, deviceScaleFactor: 2, isMobile: v.mobile, hasTouch: v.mobile,
     timezoneId: 'Australia/Melbourne', locale: 'en-AU', storageState: state,
   })
 }
@@ -109,7 +110,7 @@ async function login(who, size) {
 
 for (const s of shots) {
   try {
-    const ctx = await newContext(s.size, await login(s.as, s.size))
+    const ctx = await newContext(s.size, await login(s.as, s.size), s.tall)
     const page = await ctx.newPage()
     const blocked = []
     await guard(page, !!s.writes, blocked)
@@ -121,10 +122,12 @@ for (const s of shots) {
         return route.fulfill({ response: res, json: body })
       })
     }
-    await page.goto(cfg.base + s.path, { waitUntil: 'networkidle', timeout: 30000 }).catch(() => {})
+    await page.goto(cfg.base + s.path, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => {})
+    await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {})
     for (const st of s.steps || []) {
       if (st.click) await page.locator(st.click).first().click({ timeout: 10000 })
-      if (st.waitText) await page.getByText(st.waitText).first().waitFor({ timeout: 15000 })
+      if (st.clickIf) { const l = page.locator(st.clickIf).first(); if (await l.isVisible().catch(() => false)) await l.click() }
+      if (st.waitText) await page.getByText(st.waitText).first().waitFor({ timeout: st.timeout || 15000 })
       if (st.wait) await page.waitForTimeout(st.wait)
     }
     await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {})
@@ -135,7 +138,29 @@ for (const s of shots) {
     if (emails.length) throw new Error(`shows an address outside the demo: ${[...new Set(emails)].join(', ')}`)
     if (/rehab/i.test(text)) throw new Error('shows the word "rehab" (held back until legal and clinical review)')
     const v = cfg.sizes[s.size]
-    const png = await page.screenshot(s.clip ? { clip: { x: 0, y: 0, width: v.width, height: s.clip.height } } : { fullPage: !!s.full })
+    let png
+    if (s.card) {
+      // Just one card: find the text (or CSS selector), then the nearest rounded, bordered box around it.
+      const found = await page.evaluate(want => {
+        let el = null
+        if (want.css) el = document.querySelector(want.css)
+        else {
+          const t = want.text.toLowerCase()
+          const all = [...document.querySelectorAll('body *')].filter(e => e.getClientRects().length)
+          el = all.find(e => e.innerText && e.innerText.trim().toLowerCase() === t) || all.find(e => e.children.length === 0 && e.innerText && e.innerText.toLowerCase().includes(t))
+        }
+        while (el && el !== document.body) {
+          const cs = getComputedStyle(el), r = el.getBoundingClientRect()
+          if (parseFloat(cs.borderTopLeftRadius) >= 12 && parseFloat(cs.borderTopWidth) > 0 && r.width > 200) { el.setAttribute('data-shot-card', ''); return true }
+          el = el.parentElement
+        }
+        return false
+      }, s.card)
+      if (!found) throw new Error(`couldn't find the card for ${JSON.stringify(s.card)}`)
+      png = await page.locator('[data-shot-card]').first().screenshot()
+    } else {
+      png = await page.screenshot(s.clip ? { fullPage: true, clip: { x: 0, y: 0, width: v.width, height: s.clip.height } } : { fullPage: !!s.full })
+    }
     const webp = await sharp(png).webp({ quality: 82 }).toBuffer()
     const file = join(out, s.id + '.webp')
     const hash = b => createHash('sha1').update(b).digest('hex')
